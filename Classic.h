@@ -1,36 +1,33 @@
-//
-//  Film.hpp
-//  
-//
-//  Created by You on 3/2/19.
-//
 
-#ifndef Film_hpp
-#define Film_hpp
+#ifndef Classic_h
+#define Classic_h
 
-#include "Media"
+#include "Film.h"
 #include <string>
 using namespace std;
 
-class Classic : Film
+class Classic : public Film
 {
+private:
     string mainActorFirst;
     string mainActorLast;
-    int month
+    int month;
 
 public:
-    
     void setMainActorFirst();
     void setMainActorFLast();
     void setMonth();
     
-    void getMainActorFirst();
-    void getMainActorFLast();
-    void getMonth();
+    void getMainActorFirst() const;
+    void getMainActorFLast() const;
+    void getMonth() const;
     
     //set actor first + last + month
-    film(mediaType, storageType, numStock, filmType, director, title, year, mainActorFirst, mainActorLast, month);
+    Classic(char mediaType, char storageType, int numStock, 
+        char filmType, string director, string title, int year, 
+        string mainActorFirst, string mainActorLast, int month);
 
+    string getKey() const override;
 };
 
-#endif /* Film_hpp */
+#endif

@@ -1,34 +1,30 @@
-//
-//  Film.hpp
-//  
-//
-//  Created by You on 3/2/19.
-//
+#ifndef Media_h
+#define Media_h
 
-#ifndef Film_hpp
-#define Film_hpp
-
-#include "Media"
 #include <string>
+
 using namespace std;
 
 class Media
 {
+private:
     char mediaType;
     char storageType;
     int numStock;
     
 public:
+    Media(char mediaType, char storageType, int numStock);
+    ~Media();
+
+    char getMediaType() const;
+    char getStorageType() const;
+    int getNumStock() const;
     
-    void getMediaType;
-    void getStorageType;
-    void getNumStock;
+    void setMediaType(char);
+    void setStorageType(char);
+    void setNumStock(int);
     
-    void setMediaType;
-    void setStorageType;
-    void setNumStock;
-    
-    Media(mediaType, StorageType, numStock);
+    virtual string getKey() const = 0;
 };
 
-#endif /* Film_hpp */
+#endif

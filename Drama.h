@@ -1,22 +1,18 @@
-//
-//  Film.hpp
-//  
-//
-//  Created by You on 3/2/19.
-//
+#ifndef Drama_h
+#define Drama_h
 
-#ifndef Film_hpp
-#define Film_hpp
-
-#include "Media"
+#include "Film.h"
 #include <string>
+
 using namespace std;
 
 class Drama : public Film
 {
-    //set film type D ---> Drama
-    film(mediaType, storageType, numStock, filmType, director, title, year);
+public:
+    Drama(char mediaType, char storageType, int numStock, char filmType, 
+        string director, string title, int year);
 
+    string getKey() const override;
 };
 
-#endif /* Film_hpp */
+#endif

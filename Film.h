@@ -1,38 +1,33 @@
-//
-//  Film.hpp
-//  
-//
-//  Created by You on 3/2/19.
-//
+#ifndef Film_h
+#define Film_h
 
-#ifndef Film_hpp
-#define Film_hpp
-
-#include "Media"
+#include "Media.h"
 #include <string>
+
 using namespace std;
 
 class Film : public Media
 {
+private:
     char filmType;
     string director;
     string title;
     int year;
 
 public:
+    void getFilmType() const;
+    void getDirector() const;
+    void getTitle() const;
+    void getYear() const;
     
-    void getTypeOfFilm();
-    void getDirector();
-    void getTitle();
-    void getYear();
-    
-    void setTypeOfFilm();
+    void setFilmType();
     void setDirector();
     void setTitle();
     void setYear();
-    
-    film(mediaType, storageType, numStock, filmType, director, title, year);
+
+    Film(char mediaType, char storageType, int numStock, char filmType, 
+        string director, string title, int year);
     
 };
 
-#endif /* Film_hpp */
+#endif

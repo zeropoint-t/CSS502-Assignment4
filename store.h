@@ -1,26 +1,28 @@
-#pragma once
+
+#ifndef Store_h
+#define Store_h
+
 #include<iostream>
 #include<fstream>
 #include "InventoryMgr.h"
 #include "AccountMgr.h"
-#include "TransactionMgr"
+#include "TransactionMgr.h"
 using namespace std;
 
-class Store {
+class Store 
+{
 private:
-	InventoryMgr invmgr;
-	AccountMgr acctmgr;
-	TransactionMgr trnsmgr;
+	InventoryMgr* invMgr;
+	AccountMgr* acctMgr;
+	TransactionMgr* trnsMgr;
+
 public:
 	Store();
-	/*Store() {
-		invmgr = NULL;
-		acctmgr = NULL;
-		trnsmgr = NULL;
-	}*/
+	~Store();
 
-	//~Store();
 	void buildInventory(ifstream &InventoryInputFile);
 	void buildAccounts(ifstream &AccountsInputFile);
 	void buildTransactions(ifstream &TransactionsInputFile);
 };
+
+#endif

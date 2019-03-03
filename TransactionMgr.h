@@ -1,3 +1,15 @@
+// ------------------------------------------------ file name -------------------------------------------------------
+// Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
+// Course Section Number:       CSS502A - Winter 2019
+// Creation Date:               03/03/2019
+// Date of Last Modification:   03/03/2019
+// ------------------------------------------------------------------------------------------------------------------
+// TransactionMgr - Header file - in charge of processing commands/transactions
+//                  (borrow, return, show history, show inventory)
+// ------------------------------------------------------------------------------------------------------------------
+// Notes on specifications, special algorithms, and assumptions.
+// ------------------------------------------------------------------------------------------------------------------
+
 #ifndef TransactionMgr_h
 #define TransactionMgr_h
 
@@ -15,7 +27,7 @@ class TransactionMgr
 private:
     vector<Transaction> trans;
     InventoryMgr& invMgr;
-    void buildTransactions(const string infile);
+    void buildTransactions(const string infile);//read a file and consume each command as a transaction
     /*
         Invariance check:
         action (B R H I) --- invalid action (X Z) ---> use set to check type of command
@@ -28,22 +40,32 @@ private:
     */
 
 public:
+    //constructors & destructor
     TransactionMgr(string infile, InventoryMgr& inv);
     ~TransactionMgr();
 
-    bool borrowMedia(const Media&, const Account&, const char actionType);
+    bool borrowMedia(const Media&, const Account&, const char actionType);//borrow media
+    /*    
+        //assume that invariance checks have been done already
+        create a transaction object for borrow action
+        push the object to transaction vector
+        return true
+    */
+    bool returnMedia(const Media&, const Account&, const char actionType);//return media
     /*
-        create transaction object
+        //assume that invariance checks have been done already
+        create a transaction object for return action
         push the object to transaction vector
         return true;
     */
-    bool returnMedia(const Media&, const Account&, const char actionType);
-    void printAccountHistory(const int acctId) const;
+
+    void printAccountHistory(const int acctId) const;//print transaction history for this account
     /*
         iterate through each trans in trans vector from the beginnig to the end
-        as we find transactin for this account, we push the trans into a stack
+        as we find transactins for this account, push them into a stack
         iterate through the stack and print each trasaction from the latest to the oldest
     */
-    void printInventory() const;
+
+    void printInventory() const;//print inventory
 };
 #endif

@@ -1,3 +1,14 @@
+// ------------------------------------------------ file name -------------------------------------------------------
+// Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
+// Course Section Number:       CSS502A - Winter 2019
+// Creation Date:               03/03/2019
+// Date of Last Modification:   03/03/2019
+// ------------------------------------------------------------------------------------------------------------------
+// InventoryMgr - Header file - in charge of inventory related tasks
+// ------------------------------------------------------------------------------------------------------------------
+// Notes on specifications, special algorithms, and assumptions.
+// ------------------------------------------------------------------------------------------------------------------
+
 #ifndef InventoryMgr_h
 #define InventoryMgr_h
 
@@ -5,12 +16,15 @@
 #include <string>
 #include "Hash.h"
 #include "Transaction.h"
+#include "Media.h"
 
 using namespace std;
 
 class InventoryMgr
 {
 private:
+    Hash<string, Media*> inventory;//key:film type(C,F,D), value:Media pointer
+    void sort();
     void buildInv(string filePath);
     /*
         buildInv(){
@@ -22,16 +36,17 @@ private:
         *check if film in system if YES update stock ELSE
         *call appropriate constructor(FUNNY(FILM INFO) CLASSIC(FILM INFO) DRAMA(FILM INFO, key))
     */
-    Hash<string, int> inventory;
-    void sort();
+
 public:
+    //constructors & destructor
     InventoryMgr(string infile);
     ~InventoryMgr();
 
-    bool incInv(string key);
-    bool decInv(string key);
-    int getStock(string key) const;
-    void printInv() const;
+    bool incInv(string key);//increment stock count
+    bool decInv(string key);//decrement stock count
+    int getStock(string key) const;//return s
+    tock count
+    void printInv() const;//print inventory
 };
 
 #endif

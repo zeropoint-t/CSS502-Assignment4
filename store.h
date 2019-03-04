@@ -33,8 +33,8 @@ public:
 	~Store();
 
 	void buildInventory(ifstream &InventoryInputFile);//build
-	void buildAccounts(ifstream &AccountsInputFile);
-	void buildTransactions(ifstream &TransactionsInputFile);
+	void buildCustomerList(ifstream &AccountsInputFile);
+	void processTransactions(ifstream &TransactionsInputFile);
 };
 
 #endif

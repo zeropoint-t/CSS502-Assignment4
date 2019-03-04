@@ -23,6 +23,7 @@ private:
     char mediaType;//Movie, Music, etc
     char storageType;//DVD, CD, etc
     int numStock;//stock count
+    vector<Media> mediaVect;
     
 public:
     //constructors & destructor

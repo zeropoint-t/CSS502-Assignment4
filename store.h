@@ -25,6 +25,7 @@ private:
 	InventoryMgr* invMgr;
 	AccountMgr* acctMgr;
 	TransactionMgr* trnsMgr;
+	vector<Store> storesVect;
 
 public:
 	//constructors & destructor

@@ -23,7 +23,7 @@ private:
 	string lastName;
 	int accountId;
 	int points;
-	bool flagged;
+	bool flagged=false;
 public:
 	//constructors & destructor
 	Account(int acctId, string lastName, string fisrtName);

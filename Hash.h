@@ -23,7 +23,7 @@ template <typename k, typename v>
 class Hash 
 {
 private:
-
+    
 public:
 
 };

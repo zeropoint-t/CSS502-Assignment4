@@ -29,14 +29,14 @@ char Transaction::getActionType() const
 //setters
 void Transaction::setAccount(Account* nAccount)
 {
-    
+    acount = nAccount;
 }
 void Transaction::setMedia(Media* nMedia)
 {
-    
+    media = nMedia;
 }
-void Transaction::setActionType(char getActionType)
+void Transaction::setActionType(char nActionType)
 {
-    
+    actionType = nActionType;
 }
 

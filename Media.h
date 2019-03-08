@@ -36,9 +36,9 @@ public:
     char getStorageType() const;
     int getNumStock() const;
     
-    void setMediaType(char);
-    void setStorageType(char);
-    void setNumStock(int);
+    void setMediaType(char nStorageType);
+    void setStorageType(char nStorageType);
+    void setNumStock(int nNumStock);
     
     virtual string getKey() const = 0;//unique key
     virtual bool operator>(Media&) = 0;//less than operator overload for comparison

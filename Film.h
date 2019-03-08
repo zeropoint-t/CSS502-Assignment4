@@ -1,13 +1,13 @@
-// ------------------------------------------------ file name -------------------------------------------------------
+// ----------------------------------------Film.h-------------------------------
 // Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
 // Course Section Number:       CSS502A - Winter 2019
 // Creation Date:               03/03/2019
-// Date of Last Modification:   03/03/2019
-// ------------------------------------------------------------------------------------------------------------------
-// Film - Header file - represents a film(movie)
-// ------------------------------------------------------------------------------------------------------------------
-// Notes on specifications, special algorithms, and assumptions.
-// ------------------------------------------------------------------------------------------------------------------
+// Date of Last Modification:   03/07/2019
+// -----------------------------------------------------------------------------
+// Film - header - superclass from which genres are derived
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 
 #ifndef Film_h
 #define Film_h
@@ -26,22 +26,22 @@ private:
     int year;
 
 public:
-
     //constructors & destructor
     Film(char mediaType, char storageType, int numStock, char filmType, 
         string director, string title, int year);
     ~Film();
 
-    //getters & setters
-    void getFilmType() const;
-    void getDirector() const;
-    void getTitle() const;
-    void getYear() const;
+    //getters
+    char getFilmType() const;
+    string getDirector() const;
+    string getTitle() const;
+    int getYear() const;
     
-    void setFilmType();
-    void setDirector();
-    void setTitle();
-    void setYear();    
+    //setters
+    void setFilmType(char nFilmType);
+    void setDirector(string nDirector);
+    void setTitle(string nTitle);
+    void setYear(int nYear);    
 };
 
 #endif

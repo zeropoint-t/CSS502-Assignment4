@@ -1,13 +1,13 @@
-// ------------------------------------------------ file name -------------------------------------------------------
+// ----------------------------------------Classic.h----------------------------
 // Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
 // Course Section Number:       CSS502A - Winter 2019
 // Creation Date:               03/03/2019
-// Date of Last Modification:   03/03/2019
-// ------------------------------------------------------------------------------------------------------------------
-// Comedy - Header file - represents a classic movie
-// ------------------------------------------------------------------------------------------------------------------
-// Notes on specifications, special algorithms, and assumptions.
-// ------------------------------------------------------------------------------------------------------------------
+// Date of Last Modification:   03/07/2019
+// -----------------------------------------------------------------------------
+// Classic - header - classic genre inherited from Film
+// -----------------------------------------------------------------------------
+// extra data fields used in sorting, storing, and hashing: actor name + month
+// -----------------------------------------------------------------------------
 
 #ifndef Classic_h
 #define Classic_h
@@ -25,19 +25,20 @@ private:
 
 public:
     //constructors & destructor
-    Classic(char mediaType, char storageType, int numStock, 
-        char filmType, string director, string title, int year, 
-        string mainActorFirst, string mainActorLast, int month);
+    Classic(char nMediaType, char nStorageType, int nNumStock,
+        char nFilmType, string nDirector, string nTitle, int nYear,
+        string nMainActorFirst, string nMainActorLast, int nMonth);
     ~Classic();
     
-    //getters & setters
-    void setMainActorFirst();
-    void setMainActorFLast();
-    void setMonth();
+    //getters
+    string getMainActorFirst() const;
+    string getMainActorFLast() const;
+    int getMonth() const;
     
-    void getMainActorFirst() const;
-    void getMainActorFLast() const;
-    void getMonth() const;
+    //setters
+    void setMainActorFirst(string nMainActorFirst);
+    void setMainActorFLast(string nMainActorLast);
+    void setMonth(int nMonth);
     
     string getKey() const override;//get a unique key
 };

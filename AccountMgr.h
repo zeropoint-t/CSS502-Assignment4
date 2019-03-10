@@ -14,11 +14,11 @@
 #define AccuntMgr_h
 
 #include "Account.h"
-#include "Hash.h"
+#include "HashTable.h"
 
 class AccountMgr {
 private:
-	Hash<int, Account*> accounts; // Account and int customerID
+    HashTable<int, Account*> accounts; // Account and int customerID
 	void buildAccounts(string infile);
 
 public:

@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 #include "Transaction.h"
 #include "InventoryMgr.h"
 #include "Media.h"
@@ -26,7 +27,7 @@ class TransactionMgr
 {
 private:
     vector<Transaction> trans;
-    InventoryMgr& invMgr;
+    InventoryMgr invMgr = NULL;
     void buildTransactions(const string infile);//read a file and consume each command as a transaction
     /*
         Invariance check:

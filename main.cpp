@@ -35,28 +35,28 @@ int main() {
         return 3;
     }
     
-    Store s;//create store object
+//    Store s;//create store object
     
-    //part1 ---> build inventory database
-    for (;;){
-        s.buildInventory(infile1);
-        if (infile1.eof())
-            break;
-    }
-    
-    //part2 ---> build customer database
-    for (;;){
-        s.buildCustomerList(infile2);
-        if (infile2.eof())
-            break;
-    }
-    
-    //part3 ---> process transactions
-    for (;;){
-        s.processTransactions(infile3);
-        if (infile3.eof())
-            break;
-    }
+//    //part1 ---> build inventory database
+//    for (;;){
+//        s.buildInventory(infile1);
+//        if (infile1.eof())
+//            break;
+//    }
+//
+//    //part2 ---> build customer database
+//    for (;;){
+//        s.buildCustomerList(infile2);
+//        if (infile2.eof())
+//            break;
+//    }
+//
+//    //part3 ---> process transactions
+//    for (;;){
+//        s.processTransactions(infile3);
+//        if (infile3.eof())
+//            break;
+//    }
     
     cout << "GREAT JOB. PROJECT DONE!!!" << endl;
 

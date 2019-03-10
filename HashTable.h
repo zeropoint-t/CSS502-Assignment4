@@ -20,12 +20,12 @@
 using namespace std;
 
 template <typename k, typename v>
-class Hash 
+class HashTable
 {
 private:
     
 public:
-
+    HashTable(){}
 };
 
 #endif

@@ -9,31 +9,34 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-#ifndef Transaction_h
-#define Transaction_h
+#include "Transaction.h"
 
-#include "Account.h"
-#include "Media.h"
-
-using namespace std;
-
-class Transaction
+//getters
+Account* Transaction::getAccount() const
 {
-    Account* account;
-    Media* media;
-    char actionType;
-    
-public:
-    //getters
-    Account* getAccount() const;
-    Media* getMedia() const;
-    char getActionType() const;
-    
-    //setters
-    void setAccount(Account* nAccount);
-    void setMedia(Media* nMedia);
-    void setActionType(char getActionType);
+    return account;
+}
+Media* Transaction::getMedia() const
+{
+    return media;
+}
 
-};
+char Transaction::getActionType() const
+{
+    return actionType;
+}
 
-#endif
+//setters
+void Transaction::setAccount(Account* nAccount)
+{
+    acount = nAccount;
+}
+void Transaction::setMedia(Media* nMedia)
+{
+    media = nMedia;
+}
+void Transaction::setActionType(char nActionType)
+{
+    actionType = nActionType;
+}
+

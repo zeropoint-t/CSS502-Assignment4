@@ -27,7 +27,7 @@ class TransactionMgr
 {
 private:
     vector<Transaction> trans;
-    InventoryMgr invMgr = NULL;
+    InventoryMgr &invMgr;
     void buildTransactions(const string infile);//read a file and consume each command as a transaction
     /*
         Invariance check:

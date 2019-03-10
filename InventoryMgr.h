@@ -46,7 +46,7 @@ public:
     bool incInv(string key);//increment stock count
     bool decInv(string key);//decrement stock count
     int getStock(string key) const;//return s
-    //Stock count
+    int stockCount;
     void printInv() const;//print inventory
 };
 

@@ -1,14 +1,14 @@
 
-// ------------------------------------------------ file name -------------------------------------------------------
+// ----------------------------------------Account.h----------------------------
 // Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
 // Course Section Number:       CSS502A - Winter 2019
 // Creation Date:               03/03/2019
-// Date of Last Modification:   03/03/2019
-// ------------------------------------------------------------------------------------------------------------------
-// Account - Header file - represent an account
-// ------------------------------------------------------------------------------------------------------------------
+// Date of Last Modification:   03/07/2019
+// -----------------------------------------------------------------------------
+// Account - header file - represent an account
+// -----------------------------------------------------------------------------
 // Notes on specifications, special algorithms, and assumptions.
-// ------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 #ifndef Account_h
 #define Account_h
@@ -19,21 +19,22 @@ using namespace std;
 
 class Account {
 private:
-	string firstName;
-	string lastName;
-	int accountId;
-	int points;
-	bool flagged=false;
+    int accountId;
+    string firstName;
+    string lastName;
+	//int points; ---> implement in extension
+	//bool flagged=false; ---> implement in extension
 public:
 	//constructors & destructor
-	Account(int acctId, string lastName, string fisrtName);
+	Account(int nAccountId, string nFisrtName, string nLastName);
 	~Account();
 
-	//getters & setters
+	//getters
 	string getFirstName() const;
     string getLastName() const;
     int getAccountId() const;
     
+    //setters
     void setFirstName(string);
     void setLastName(string);
     void setAccountId(int);

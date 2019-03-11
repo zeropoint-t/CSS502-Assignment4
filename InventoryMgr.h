@@ -23,7 +23,7 @@ using namespace std;
 class InventoryMgr
 {
 private:
-    HashTable<string, Media*> inventory;//key:film type(C,F,D), value:Media pointer
+    // HashTable<string, Media*> inventory;//key:film type(C,F,D), value:Media pointer
     void sort();
     void buildInv(string filePath);
     /*

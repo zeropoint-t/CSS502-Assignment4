@@ -10,30 +10,34 @@
 
 #include <iostream>
 #include <fstream>
-#include "Store.h"
+// #include "Store.h"
+#include "AccountMgr.h"
 
 using namespace std;
 
 int main() {
     
    //link data files w/ software
-    ifstream infile1("data4movies.txt");
-    if (!infile1) {
-        cout << "File could not be opened." << endl;
-        return 1;
-    }
+    // ifstream infile1("data4movies.txt");
+    // if (!infile1) {
+    //     cout << "File could not be opened." << endl;
+    //     return 1;
+    // }
     
-    ifstream infile2("data4mcustomers.txt");
-    if (!infile2) {
-        cout << "File could not be opened." << endl;
-        return 2;
-    }
+    // ifstream infile2("/Users/tetsuya/Documents/Projects/CSS502AHW4/CSS502-Assignment4/data4customers.txt");
+    // if (!infile2) {
+    //     cout << "File could not be opened." << endl;
+    //     return 2;
+    // }
+
+    AccountMgr acctmgr("/Users/tetsuya/Documents/Projects/CSS502AHW4/CSS502-Assignment4/data4customers.txt");
     
-    ifstream infile3("data4commands.txt");
-    if (!infile3) {
-        cout << "File could not be opened." << endl;
-        return 3;
-    }
+    
+    // ifstream infile3("data4commands.txt");
+    // if (!infile3) {
+    //     cout << "File could not be opened." << endl;
+    //     return 3;
+    // }
     
 //    Store s;//create store object
     

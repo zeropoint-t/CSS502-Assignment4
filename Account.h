@@ -14,10 +14,14 @@
 #define Account_h
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
 class Account {
+
+    friend ostream& operator<<(ostream &outStream, const Account &acct);
+
 private:
     int accountId;
     string firstName;

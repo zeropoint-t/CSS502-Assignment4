@@ -12,6 +12,12 @@
 
 #include "Account.h"
 
+ostream& operator<<(ostream &outStream, const Account &acct)
+{
+	outStream << acct.getFirstName() << " " << acct.getLastName() << endl;
+	return outStream;
+}
+
 Account::Account(int nAccountId, string nFirstName, string nLastName)
 {
     setAccountId(nAccountId);

@@ -70,7 +70,8 @@ void Media::borrowMedia()//increase stock by 1
 //invariance ---> only returns media if adding item does not exceed number of original items in library, else does nothing
 void Media::returnMedia()//increase stock by 1
 {
-    numStock++;
+    if (numStock < maxStock)
+        numStock++;
 }
 //TODO ---> sort out virtual class implementation
 //CLARIFICATION: do these need to be included in the .cpp???

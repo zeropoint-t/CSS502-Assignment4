@@ -29,3 +29,39 @@ string Drama::getKey() const //override
     return "TODO ---> implement getKey() ??? ---> does it call private hash method";
 }
 
+
+// -----------operator==(const Drama& rhs)--------------------------------------
+// check if lhs drama is identical to rhs drama by director and title
+// -----------------------------------------------------------------------------
+bool Drama::operator==(const Drama& rhs) const {
+    
+    return (getDirector() == rhs.getDirector() && getTitle() == rhs.getTitle());
+}
+
+
+// -----------operator<(const Drama& rhs)--------------------------------------
+// check if lhs drama comes before rhs drama by director, then by title
+// -----------------------------------------------------------------------------
+bool Drama::operator<(const Drama& rhs) const
+{
+    if (getDirector() < rhs.getDirector())
+        return true;
+    else if (getDirector() == rhs.getDirector()){
+        return (getTitle() < rhs.getTitle());
+    }
+    else
+        return false;
+}
+// -----------operator>(const Drama& rhs)--------------------------------------
+// check if lhs drama comes before rhs drama by director, then by title
+// -----------------------------------------------------------------------------
+bool Drama::operator>(const Drama& rhs) const
+{
+    if (getDirector() > rhs.getDirector())
+        return true;
+    else if (getDirector() == rhs.getDirector()){
+        return (getTitle() > rhs.getTitle());
+    }
+    else
+        return false;
+}

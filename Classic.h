@@ -32,7 +32,7 @@ public:
     
     //getters
     string getMainActorFirst() const;
-    string getMainActorFLast() const;
+    string getMainActorLast() const;
     int getMonth() const;
     
     //setters
@@ -41,6 +41,10 @@ public:
     void setMonth(int nMonth);
     
     string getKey() const override;//get a unique key
+    
+    bool operator>(const Classic&) const;
+    bool operator==(const Classic&) const;
+    bool operator<(const Classic&) const;
 };
 
 #endif

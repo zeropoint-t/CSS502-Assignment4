@@ -19,11 +19,46 @@ Comedy::~Comedy()
 {
     
 }
-//C key --->  title, year release
+// -----------operator==(const Comedy& rhs)--------------------------------------
+// check if lhs comedy is identical to rhs comedy by title and year
+// -----------------------------------------------------------------------------
+bool Comedy::operator==(const Comedy& rhs) const {
+    
+    return (getTitle() == rhs.getTitle() && getYear() == rhs.getYear());
+}
+
+
+// -----------operator<(const Comedy& rhs)--------------------------------------
+// check if lhs comedy comes before rhs comedy by title, then by year
+// -----------------------------------------------------------------------------
+bool Comedy::operator<(const Comedy& rhs) const
+{
+    if (getTitle() < rhs.getTitle())
+        return true;
+    else if (getTitle() == rhs.getTitle()){
+        return (getYear() < rhs.getYear());
+    }
+    else
+        return false;
+}
+// -----------operator>(const Comedy& rhs)--------------------------------------
+// check if lhs comedy comes before rhs comedy by title, then by year
+// -----------------------------------------------------------------------------
+bool Comedy::operator>(const Comedy& rhs) const
+{
+    if (getTitle() > rhs.getTitle())
+        return true;
+    else if (getTitle() == rhs.getTitle()){
+        return (getYear() > rhs.getYear());
+    }
+    else
+        return false;
+}
 
 // -------------------------------getKey()--------------------------------------
 // generate key, F key ---> release date and actor
 // -----------------------------------------------------------------------------
+//C key --->  title, year release
 string Comedy::getKey() const //override
 {
     return "TODO ---> implement getKey() ??? ---> does it call private hash method";

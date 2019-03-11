@@ -41,7 +41,12 @@ public:
     void setFilmType(char nFilmType);
     void setDirector(string nDirector);
     void setTitle(string nTitle);
-    void setYear(int nYear);    
+    void setYear(int nYear);
+    
+    virtual bool operator>(Media&) = 0;
+    virtual bool operator==(const Media&) const = 0;
+    virtual bool operator<(const Media&) const = 0;
+    
 };
 
 #endif

@@ -14,7 +14,7 @@
 
 #include <iostream>
 #include <string>
-#include "Hash.h"
+#include "HashTable.h"
 #include "Transaction.h"
 #include "Media.h"
 
@@ -23,7 +23,7 @@ using namespace std;
 class InventoryMgr
 {
 private:
-    Hash<string, Media*> inventory;//key:film type(C,F,D), value:Media pointer
+    HashTable<string, Media*> inventory;//key:film type(C,F,D), value:Media pointer
     void sort();
     void buildInv(string filePath);
     /*
@@ -39,6 +39,7 @@ private:
 
 public:
     //constructors & destructor
+    InventoryMgr();
     InventoryMgr(string infile);
     ~InventoryMgr();
 

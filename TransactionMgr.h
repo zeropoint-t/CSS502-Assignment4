@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 #include "Transaction.h"
 #include "InventoryMgr.h"
 #include "Media.h"

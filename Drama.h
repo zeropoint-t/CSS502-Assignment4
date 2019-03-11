@@ -25,6 +25,10 @@ public:
     ~Drama();
 
     string getKey() const override;//get a unique key
+    
+    bool operator>(const Drama&) const;
+    bool operator==(const Drama&) const;
+    bool operator<(const Drama&) const;
 };
 
 #endif

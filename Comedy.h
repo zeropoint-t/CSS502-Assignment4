@@ -26,6 +26,10 @@ public:
     ~Comedy();
 
     string getKey() const override;//get a unique key
+    
+    bool operator>(const Comedy&) const;
+    bool operator==(const Comedy&) const;
+    bool operator<(const Comedy&) const;
 };
 
 #endif

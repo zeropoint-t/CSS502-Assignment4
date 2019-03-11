@@ -36,7 +36,7 @@ string Classic::getMainActorFirst() const
 {
     return  mainActorFirst;
 }
-string Classic::getMainActorFLast() const
+string Classic::getMainActorLast() const
 {
     return mainActorLast;
 }
@@ -65,5 +65,61 @@ void Classic::setMonth(int nMonth)
 string Classic::getKey() const //override
 {
     return "TODO ---> implement getKey() ??? ---> does it call private hash method";
+}
+
+// -----------operator==(const Classic& rhs)--------------------------------------
+// check if lhs classic is identical to rhs classic by year and actor
+// -----------------------------------------------------------------------------
+bool Classic::operator==(const Classic& rhs) const {
+    
+    return (getYear() == rhs.getYear() && getMonth() == rhs.getMonth()
+            && getMainActorFirst() == getMainActorFirst() &&
+            getMainActorLast() == rhs.getMainActorLast());
+}
+
+
+// -----------operator<(const Classic& rhs)--------------------------------------
+// check if lhs classic comes before rhs classic by year, then by actor
+// -----------------------------------------------------------------------------
+bool Classic::operator<(const Classic& rhs) const
+{
+    if (getYear() < rhs.getYear())
+        return true;
+    else if (getYear() == rhs.getYear()){
+        if (getMainActorFirst() < rhs.getMainActorFirst())
+        {
+            return true;
+        }
+        else if (getMainActorFirst() == rhs.getMainActorFirst())
+        {
+            return (getMainActorLast() < rhs.getMainActorLast());
+        }
+        else
+            return false;
+    }
+    else
+        return false;
+}
+// -----------operator>(const Classic& rhs)--------------------------------------
+// check if lhs classic comes before rhs classic by year, then by actor
+// -----------------------------------------------------------------------------
+bool Classic::operator>(const Classic& rhs) const
+{
+    if (getYear() > rhs.getYear())
+        return true;
+    else if (getYear() == rhs.getYear()){
+        if (getMainActorFirst() > rhs.getMainActorFirst())
+        {
+            return true;
+        }
+        else if (getMainActorFirst() == rhs.getMainActorFirst())
+        {
+            return (getMainActorLast() > rhs.getMainActorLast());
+        }
+        else
+            return false;
+    }
+    else
+        return false;
 }
 

@@ -24,8 +24,6 @@ public:
           string nDirector, string nTitle, int nYear);
     ~Drama();
 
-    string getKey() const override;//get a unique key
-    
     bool operator>(const Media&) const;
     bool operator==(const Media&) const;
     bool operator<(const Media&) const;

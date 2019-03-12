@@ -23,6 +23,7 @@ Media::Media(char nMediaType, char nStorageType, int nNumStock)
     numStock = nNumStock;
     setMaxStock(nNumStock);
 }
+Media::Media(){}
 Media::~Media()
 {
     

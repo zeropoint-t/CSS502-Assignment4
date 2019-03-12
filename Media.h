@@ -29,6 +29,7 @@ private:
 public:
     //constructors & destructor
     Media(char mediaType, char storageType, int numStock);
+    Media();
     ~Media();
 
     //getters/setters
@@ -41,10 +42,10 @@ public:
     void setStorageType(char nStorageType);
     void setNumStock(int nNumStock);
     
-    virtual string getKey() const = 0;//unique key
+    // virtual string getKey() const = 0;//unique key
     
     //comparision overloads
-    virtual bool operator>(Media&) = 0;
+    virtual bool operator>(const Media&) const = 0;
     virtual bool operator==(const Media&) const = 0;
     virtual bool operator<(const Media&) const = 0;
     

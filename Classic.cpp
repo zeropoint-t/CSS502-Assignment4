@@ -59,14 +59,6 @@ void Classic::setMonth(int nMonth)
     month = nMonth;
 }
 
-// -------------------------------getKey()--------------------------------------
-// generate key, C key --->  title, year release
-// -----------------------------------------------------------------------------
-string Classic::getKey() const //override
-{
-    return "TODO ---> implement getKey() ??? ---> does it call private hash method";
-}
-
 // -----------operator==(const Classic& rhs)--------------------------------------
 // check if lhs classic is identical to rhs classic by year and actor
 // -----------------------------------------------------------------------------

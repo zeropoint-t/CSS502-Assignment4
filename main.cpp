@@ -10,6 +10,8 @@
 
 #include <iostream>
 #include <fstream>
+#include "Media.h"
+#include "Comedy.h"
 // #include "Store.h"
 #include "AccountMgr.h"
 
@@ -32,7 +34,11 @@ int main() {
 
     AccountMgr acctmgr("/Users/tetsuya/Documents/Projects/CSS502AHW4/CSS502-Assignment4/data4customers.txt");
     
-    
+    Media* com1 = new Comedy('M', 'D', 10, 'F', "Woody Allen", "You've Got Mail", 1977);
+    Media* com2 = new Comedy('M', 'D', 10, 'F', "Nora Ephron", "You've Got Mail", 1998);
+
+    bool a = (*com1) < (*com2);
+    cout << a << endl;
     // ifstream infile3("data4commands.txt");
     // if (!infile3) {
     //     cout << "File could not be opened." << endl;

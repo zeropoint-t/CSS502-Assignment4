@@ -39,9 +39,7 @@ public:
     void setMainActorFirst(string nMainActorFirst);
     void setMainActorFLast(string nMainActorLast);
     void setMonth(int nMonth);
-    
-    string getKey() const override;//get a unique key
-    
+       
     bool operator>(const Media&) const;
     bool operator==(const Media&) const;
     bool operator<(const Media&) const;

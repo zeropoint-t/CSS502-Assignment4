@@ -10,11 +10,31 @@
 // -----------------------------------------------------------------------------
 #include "Comedy.h"
 
+// bool operator>(Media &m1, Media &m2)  // <--- why friend?
+// {
+//     const Comedy& c1 = static_cast<const Comedy&>(m1);
+//     const Comedy& c2 = static_cast<const Comedy&>(m2);
+    
+//     if (c1.getTitle() < c2.getTitle())
+//         return true;
+//     else if (c1.getTitle() == c2.getTitle()){
+//         return (c1.getYear() < c2.getYear());
+//     }
+//     else
+//         return false;
+// }
+
 Comedy::Comedy(char nMediaType, char nStorageType, int nNumStock, char nFilmType,
              string nDirector, string nTitle, int nYear) : Film(nMediaType, nStorageType, nNumStock, nFilmType, nDirector, nTitle, nYear)
 {
     
 }
+
+Comedy::Comedy()
+{
+    
+}
+
 Comedy::~Comedy()
 {
     
@@ -57,13 +77,4 @@ bool Comedy::operator>(const Media& rhs) const
     }
     else
         return false;
-}
-
-// -------------------------------getKey()--------------------------------------
-// generate key, F key ---> release date and actor
-// -----------------------------------------------------------------------------
-//C key --->  title, year release
-string Comedy::getKey() const //override
-{
-    return "TODO ---> implement getKey() ??? ---> does it call private hash method";
 }

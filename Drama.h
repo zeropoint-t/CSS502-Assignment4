@@ -26,9 +26,9 @@ public:
 
     string getKey() const override;//get a unique key
     
-    bool operator>(const Drama&) const;
-    bool operator==(const Drama&) const;
-    bool operator<(const Drama&) const;
+    bool operator>(const Media&) const;
+    bool operator==(const Media&) const;
+    bool operator<(const Media&) const;
 };
 
 #endif

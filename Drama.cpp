@@ -33,21 +33,25 @@ string Drama::getKey() const //override
 // -----------operator==(const Drama& rhs)--------------------------------------
 // check if lhs drama is identical to rhs drama by director and title
 // -----------------------------------------------------------------------------
-bool Drama::operator==(const Drama& rhs) const {
+bool Drama::operator==(const Media& rhs) const {
     
-    return (getDirector() == rhs.getDirector() && getTitle() == rhs.getTitle());
+    const Drama& d = static_cast<const Drama&>(rhs);
+
+    return (getDirector() == d.getDirector() && getTitle() == d.getTitle());
 }
 
 
 // -----------operator<(const Drama& rhs)--------------------------------------
 // check if lhs drama comes before rhs drama by director, then by title
 // -----------------------------------------------------------------------------
-bool Drama::operator<(const Drama& rhs) const
+bool Drama::operator<(const Media& rhs) const
 {
-    if (getDirector() < rhs.getDirector())
+    const Drama& d = static_cast<const Drama&>(rhs);
+    
+    if (getDirector() < d.getDirector())
         return true;
-    else if (getDirector() == rhs.getDirector()){
-        return (getTitle() < rhs.getTitle());
+    else if (getDirector() == d.getDirector()){
+        return (getTitle() < d.getTitle());
     }
     else
         return false;
@@ -55,12 +59,15 @@ bool Drama::operator<(const Drama& rhs) const
 // -----------operator>(const Drama& rhs)--------------------------------------
 // check if lhs drama comes before rhs drama by director, then by title
 // -----------------------------------------------------------------------------
-bool Drama::operator>(const Drama& rhs) const
+bool Drama::operator>(const Media& rhs) const
 {
-    if (getDirector() > rhs.getDirector())
+    const Drama& d = static_cast<const Drama&>(rhs);
+
+    
+    if (getDirector() > d.getDirector())
         return true;
-    else if (getDirector() == rhs.getDirector()){
-        return (getTitle() > rhs.getTitle());
+    else if (getDirector() == d.getDirector()){
+        return (getTitle() > d.getTitle());
     }
     else
         return false;

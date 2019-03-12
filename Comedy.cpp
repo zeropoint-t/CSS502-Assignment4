@@ -82,5 +82,5 @@ bool Comedy::operator>(const Media& rhs) const
 
 void Comedy::display() const
 {
-    std::cout << "COMEDY";
+    std::cout << getTitle();
 }

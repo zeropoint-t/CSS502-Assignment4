@@ -121,6 +121,6 @@ bool Classic::operator>(const Media& rhs) const
 }
 void Classic::display() const
 {
-    std::cout << "CLASSIC";
+    std::cout << getTitle();
 }
 

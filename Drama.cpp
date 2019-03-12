@@ -76,5 +76,5 @@ bool Drama::operator>(const Media& rhs) const
 
 void Drama::display() const
 {
-    std::cout << "Drama";
+    std::cout << getTitle();
 }

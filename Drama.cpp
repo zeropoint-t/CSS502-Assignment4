@@ -9,6 +9,8 @@
 //
 // -----------------------------------------------------------------------------
 #include "Drama.h"
+#include <iostream>
+using namespace std;
 
 Drama::Drama(char nMediaType, char nStorageType, int nNumStock, char nFilmType,
              string nDirector, string nTitle, int nYear) : Film(nMediaType, nStorageType, nNumStock, nFilmType, nDirector, nTitle, nYear)
@@ -21,6 +23,19 @@ Drama::~Drama()
     
 }
 
+<<<<<<< HEAD
+=======
+
+// -------------------------------getKey()--------------------------------------
+// generate key, D key ---> Director and title
+// -----------------------------------------------------------------------------
+//string Drama::getKey() const //override
+//{
+//    return "TODO ---> implement getKey() ??? ---> does it call private hash method";
+//}
+
+
+>>>>>>> 9448bef65f5bb588cca731eef8b4f36f284f7a99
 // -----------operator==(const Drama& rhs)--------------------------------------
 // check if lhs drama is identical to rhs drama by director and title
 // -----------------------------------------------------------------------------
@@ -61,4 +76,9 @@ bool Drama::operator>(const Media& rhs) const
     }
     else
         return false;
+}
+
+void Drama::display() const
+{
+    cout << getTitle() << " " << getDirector() << " " << getYear() << endl;
 }

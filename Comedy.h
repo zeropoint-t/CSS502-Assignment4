@@ -30,6 +30,7 @@ public:
     bool operator>(const Media&) const override;
     bool operator==(const Media&) const override;
     bool operator<(const Media&) const override;
+    void display() const override;
 };
 
 #endif

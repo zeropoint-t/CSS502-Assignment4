@@ -48,7 +48,7 @@ public:
     virtual bool operator>(const Media&) const = 0;
     virtual bool operator==(const Media&) const = 0;
     virtual bool operator<(const Media&) const = 0;
-    
+    virtual void display() const = 0;
     void borrowMedia();//increase stock by 1
     void returnMedia();//increase stock by 1
 };

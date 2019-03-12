@@ -10,6 +10,8 @@
 // -----------------------------------------------------------------------------
 
 #include "Film.h"
+#include <iostream>
+using namespace std;
 
 Film::Film(char nMediaType, char nStorageType, int nNumStock, char nFilmType, string nDirector, string nTitle, int nYear) : Media(nMediaType, nStorageType, nNumStock)
 {
@@ -82,4 +84,8 @@ bool Film::operator<(const Media& rhs) const
 bool Film::operator>(const Media& rhs) const
 {
     return false;
+}
+void Film::display() const
+{
+    cout << "bob";
 }

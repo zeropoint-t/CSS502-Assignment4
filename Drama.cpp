@@ -17,11 +17,14 @@ Drama::Drama(char nMediaType, char nStorageType, int nNumStock, char nFilmType,
 {
     
 }
+
 Drama::~Drama()
 {
     
 }
 
+<<<<<<< HEAD
+=======
 
 // -------------------------------getKey()--------------------------------------
 // generate key, D key ---> Director and title
@@ -32,6 +35,7 @@ Drama::~Drama()
 //}
 
 
+>>>>>>> 9448bef65f5bb588cca731eef8b4f36f284f7a99
 // -----------operator==(const Drama& rhs)--------------------------------------
 // check if lhs drama is identical to rhs drama by director and title
 // -----------------------------------------------------------------------------
@@ -65,7 +69,6 @@ bool Drama::operator>(const Media& rhs) const
 {
     const Drama& d = static_cast<const Drama&>(rhs);
 
-    
     if (getDirector() > d.getDirector())
         return true;
     else if (getDirector() == d.getDirector()){

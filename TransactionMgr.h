@@ -14,12 +14,15 @@
 #define TransactionMgr_h
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <vector>
 #include <string>
+
 #include "Transaction.h"
-#include "InventoryMgr.h"
 #include "Media.h"
 #include "Account.h"
+#include "InventoryMgr.h"
 
 using namespace std;
 
@@ -27,7 +30,14 @@ class TransactionMgr
 {
 private:
     vector<Transaction> trans;
-    InventoryMgr &invMgr;
+    InventoryMgr* invMgr;
+
+public:
+    //constructors & destructor
+    TransactionMgr(string infile, InventoryMgr& inv);
+    TransactionMgr();
+    ~TransactionMgr();
+
     void buildTransactions(const string infile);//read a file and consume each command as a transaction
     /*
         Invariance check:
@@ -39,11 +49,6 @@ private:
         --- bring stock below 0
         --- returning movies not borrowed
     */
-
-public:
-    //constructors & destructor
-    TransactionMgr(string infile, InventoryMgr& inv);
-    ~TransactionMgr();
 
     bool borrowMedia(const Media&, const Account&, const char actionType);//borrow media
     /*    
@@ -69,4 +74,111 @@ public:
 
     void printInventory() const;//print inventory
 };
+
+TransactionMgr::TransactionMgr(string infile, InventoryMgr& inv)
+{
+
+}
+
+TransactionMgr::TransactionMgr()
+{
+
+}
+
+TransactionMgr::~TransactionMgr()
+{
+
+}
+
+void TransactionMgr::buildTransactions(const string infile)
+{
+	ifstream file(infile);
+	if (!file) 
+	{
+		cout << "File could not be opened." << endl;
+		return;
+	}
+
+    while(!file.eof())
+    {
+        string s;
+        getline(file, s);
+
+        istringstream iss(s);
+        string word;
+
+        //read word by word
+        bool firstIter = true;
+        while(iss >> word) {
+            if(firstIter)
+            {
+                firstIter = false;
+                if(word == "I"){//show inventory
+                    cout << "Inventory" << endl;
+                }else if(word == "H"){//shwo transaction history
+                    cout << "Show Transaction History" << endl;
+                    iss >> word;
+                    int accountId = stoi(word);
+                }else if(word == "B"){//borrow
+                    cout << "Borrow" << endl;
+                    string accountId;
+                    iss >> accountId;
+
+                    string storageType;
+                    iss >> storageType;
+
+                    //check storage type
+                    if(storageType == "D"){//DVD
+                        string filmType;
+                        iss >> filmType;
+                        if(filmType == "F")//funny
+                        {
+                            
+                        }else if(filmType == "C")//classic
+                        {
+                            
+                        }else if(filmType == "D")//drama
+                        {
+
+                        }else
+                        {
+                            cout << "   Wrong Film Type" << endl;
+                        }
+                    }
+                    else{
+                        cout << "   Wrong Storage Type" << endl;
+                        break;
+                    }
+                }else if(word == "R"){
+                    cout << "Return" << endl;
+                }else{
+                    cout << "Error command" << endl;
+                }
+                break;
+            }
+        }
+    }
+}
+
+bool TransactionMgr::borrowMedia(const Media&, const Account&, const char actionType)
+{
+    return true;
+}
+
+bool TransactionMgr::returnMedia(const Media&, const Account&, const char actionType)
+{
+    return true;
+}
+
+void TransactionMgr::printAccountHistory(const int acctId) const
+{
+
+}
+
+void TransactionMgr::printInventory() const
+{
+
+}
+
+
 #endif

@@ -33,12 +33,17 @@ int main() {
     // }
 
     AccountMgr acctmgr("/Users/tetsuya/Documents/Projects/CSS502AHW4/CSS502-Assignment4/data4customers.txt");
-    
-    Media* com1 = new Comedy('M', 'D', 10, 'F', "Woody Allen", "You've Got Mail", 1977);
-    Media* com2 = new Comedy('M', 'D', 10, 'F', "Nora Ephron", "You've Got Mail", 1998);
+    //3 genres
+    //3 operators
+    //Comedy(nMediaType nStorageTypenNu mStock nFilmType nDirector nTitle  nYear
+    //
+    Media* com1 = new Comedy('M', 'D', 10, 'F', "A", "A", 1977);
+    Media* com2 = new Comedy('M', 'D', 10, 'F', "A", "A", 1977);
+    Media* com3 = new Comedy('M', 'D', 10, 'F', "A", "A", 1977);
 
-    bool a = (*com1) < (*com2);
+    bool a = *com1 > *com2;
     cout << a << endl;
+    
     // ifstream infile3("data4commands.txt");
     // if (!infile3) {
     //     cout << "File could not be opened." << endl;

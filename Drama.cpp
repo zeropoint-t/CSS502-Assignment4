@@ -10,6 +10,7 @@
 // -----------------------------------------------------------------------------
 #include "Drama.h"
 #include <iostream>
+using namespace std;
 
 Drama::Drama(char nMediaType, char nStorageType, int nNumStock, char nFilmType,
              string nDirector, string nTitle, int nYear) : Film(nMediaType, nStorageType, nNumStock, nFilmType, nDirector, nTitle, nYear)
@@ -76,5 +77,5 @@ bool Drama::operator>(const Media& rhs) const
 
 void Drama::display() const
 {
-    std::cout << getTitle();
+    cout << getTitle() << " " << getDirector() << " " << getYear() << endl;
 }

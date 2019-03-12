@@ -35,7 +35,7 @@ public:
 	~AccountMgr();
 
 	// Account& loadAccount(int AcctId, string LastName, string FirstName);//load an account
-	// Account& getAccount(int AcctId) const;//returns an account object for the accountid
+	Account& getAccount(int accountId) const;//returns an account object for the accountid
 };
 
 //constructor
@@ -95,6 +95,11 @@ void AccountMgr::buildAccounts(string infile)
 	}
 
 	accounts.showItems();
+}
+
+void AccountMgr::getAccount(int accountId) const
+{
+	
 }
 
 #endif

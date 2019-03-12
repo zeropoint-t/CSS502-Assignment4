@@ -43,6 +43,7 @@ public:
     bool operator>(const Media&) const;
     bool operator==(const Media&) const;
     bool operator<(const Media&) const;
+    void display() const override;
 };
 
 #endif

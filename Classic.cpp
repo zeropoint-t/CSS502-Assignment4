@@ -10,6 +10,7 @@
 // -----------------------------------------------------------------------------
 
 #include "Classic.h"
+#include <iostream>
 
 //string mainActorFirst;
 //string mainActorLast;
@@ -117,5 +118,9 @@ bool Classic::operator>(const Media& rhs) const
     }
     else
         return false;
+}
+void Classic::display() const
+{
+    std::cout << "CLASSIC";
 }
 

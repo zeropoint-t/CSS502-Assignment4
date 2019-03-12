@@ -9,6 +9,7 @@
 //
 // -----------------------------------------------------------------------------
 #include "Drama.h"
+#include <iostream>
 
 Drama::Drama(char nMediaType, char nStorageType, int nNumStock, char nFilmType,
              string nDirector, string nTitle, int nYear) : Film(nMediaType, nStorageType, nNumStock, nFilmType, nDirector, nTitle, nYear)
@@ -24,10 +25,10 @@ Drama::~Drama()
 // -------------------------------getKey()--------------------------------------
 // generate key, D key ---> Director and title
 // -----------------------------------------------------------------------------
-string Drama::getKey() const //override
-{
-    return "TODO ---> implement getKey() ??? ---> does it call private hash method";
-}
+//string Drama::getKey() const //override
+//{
+//    return "TODO ---> implement getKey() ??? ---> does it call private hash method";
+//}
 
 
 // -----------operator==(const Drama& rhs)--------------------------------------
@@ -71,4 +72,9 @@ bool Drama::operator>(const Media& rhs) const
     }
     else
         return false;
+}
+
+void Drama::display() const
+{
+    std::cout << "Drama";
 }

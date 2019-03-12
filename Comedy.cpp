@@ -19,24 +19,27 @@ Comedy::~Comedy()
 {
     
 }
+
 // -----------operator==(const Comedy& rhs)--------------------------------------
 // check if lhs comedy is identical to rhs comedy by title and year
 // -----------------------------------------------------------------------------
-bool Comedy::operator==(const Comedy& rhs) const {
-    
-    return (getTitle() == rhs.getTitle() && getYear() == rhs.getYear());
+bool Comedy::operator==(const Media& rhs) const {
+    const Comedy& c = static_cast<const Comedy&>(rhs);
+    return (getTitle() == c.getTitle() && getYear() == c.getYear());
 }
 
 
 // -----------operator<(const Comedy& rhs)--------------------------------------
 // check if lhs comedy comes before rhs comedy by title, then by year
 // -----------------------------------------------------------------------------
-bool Comedy::operator<(const Comedy& rhs) const
+bool Comedy::operator<(const Media& rhs) const
 {
-    if (getTitle() < rhs.getTitle())
+    const Comedy& c = static_cast<const Comedy&>(rhs);
+    
+    if (getTitle() < c.getTitle())
         return true;
-    else if (getTitle() == rhs.getTitle()){
-        return (getYear() < rhs.getYear());
+    else if (getTitle() == c.getTitle()){
+        return (getYear() < c.getYear());
     }
     else
         return false;
@@ -44,12 +47,13 @@ bool Comedy::operator<(const Comedy& rhs) const
 // -----------operator>(const Comedy& rhs)--------------------------------------
 // check if lhs comedy comes before rhs comedy by title, then by year
 // -----------------------------------------------------------------------------
-bool Comedy::operator>(const Comedy& rhs) const
+bool Comedy::operator>(const Media& rhs) const
 {
-    if (getTitle() > rhs.getTitle())
+    const Comedy& c = static_cast<const Comedy&>(rhs);
+    if (getTitle() > c.getTitle())
         return true;
-    else if (getTitle() == rhs.getTitle()){
-        return (getYear() > rhs.getYear());
+    else if (getTitle() == c.getTitle()){
+        return (getYear() > c.getYear());
     }
     else
         return false;

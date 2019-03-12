@@ -70,29 +70,32 @@ string Classic::getKey() const //override
 // -----------operator==(const Classic& rhs)--------------------------------------
 // check if lhs classic is identical to rhs classic by year and actor
 // -----------------------------------------------------------------------------
-bool Classic::operator==(const Classic& rhs) const {
+bool Classic::operator==(const Media& rhs) const {
     
-    return (getYear() == rhs.getYear() && getMonth() == rhs.getMonth()
+    const Classic& c = static_cast<const Classic&>(rhs);
+    return (getYear() == c.getYear() && getMonth() == c.getMonth()
             && getMainActorFirst() == getMainActorFirst() &&
-            getMainActorLast() == rhs.getMainActorLast());
+            getMainActorLast() == c.getMainActorLast());
 }
 
 
 // -----------operator<(const Classic& rhs)--------------------------------------
 // check if lhs classic comes before rhs classic by year, then by actor
 // -----------------------------------------------------------------------------
-bool Classic::operator<(const Classic& rhs) const
+bool Classic::operator<(const Media& rhs) const
 {
-    if (getYear() < rhs.getYear())
+    const Classic& c = static_cast<const Classic&>(rhs);
+    
+    if (getYear() < c.getYear())
         return true;
-    else if (getYear() == rhs.getYear()){
-        if (getMainActorFirst() < rhs.getMainActorFirst())
+    else if (getYear() == c.getYear()){
+        if (getMainActorFirst() < c.getMainActorFirst())
         {
             return true;
         }
-        else if (getMainActorFirst() == rhs.getMainActorFirst())
+        else if (getMainActorFirst() == c.getMainActorFirst())
         {
-            return (getMainActorLast() < rhs.getMainActorLast());
+            return (getMainActorLast() < c.getMainActorLast());
         }
         else
             return false;
@@ -103,18 +106,19 @@ bool Classic::operator<(const Classic& rhs) const
 // -----------operator>(const Classic& rhs)--------------------------------------
 // check if lhs classic comes before rhs classic by year, then by actor
 // -----------------------------------------------------------------------------
-bool Classic::operator>(const Classic& rhs) const
+bool Classic::operator>(const Media& rhs) const
 {
-    if (getYear() > rhs.getYear())
+    const Classic& c = static_cast<const Classic&>(rhs);
+    if (getYear() > c.getYear())
         return true;
-    else if (getYear() == rhs.getYear()){
-        if (getMainActorFirst() > rhs.getMainActorFirst())
+    else if (getYear() == c.getYear()){
+        if (getMainActorFirst() > c.getMainActorFirst())
         {
             return true;
         }
-        else if (getMainActorFirst() == rhs.getMainActorFirst())
+        else if (getMainActorFirst() == c.getMainActorFirst())
         {
-            return (getMainActorLast() > rhs.getMainActorLast());
+            return (getMainActorLast() > c.getMainActorLast());
         }
         else
             return false;

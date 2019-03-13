@@ -14,7 +14,8 @@
 
 using namespace std;
 
-int main() {
+int main() 
+{
     
    //link data files w/ software
     ifstream infile1("data4movies.txt");

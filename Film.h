@@ -29,6 +29,7 @@ public:
     //constructors & destructor
     Film(char mediaType, char storageType, int numStock, char filmType, 
         string director, string title, int year);
+    Film();
     ~Film();
 
     //getters
@@ -41,7 +42,15 @@ public:
     void setFilmType(char nFilmType);
     void setDirector(string nDirector);
     void setTitle(string nTitle);
-    void setYear(int nYear);    
+    void setYear(int nYear);
+    
+    // virtual bool operator>(const Media&) const = 0;
+    // virtual bool operator==(const Media&) const = 0;
+    // virtual bool operator<(const Media&) const = 0;
+    bool operator>(const Media&) const override;
+    bool operator==(const Media&) const override;
+    bool operator<(const Media&) const override;
+    void display() const override;
 };
 
 #endif

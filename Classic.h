@@ -32,15 +32,18 @@ public:
     
     //getters
     string getMainActorFirst() const;
-    string getMainActorFLast() const;
+    string getMainActorLast() const;
     int getMonth() const;
     
     //setters
     void setMainActorFirst(string nMainActorFirst);
     void setMainActorFLast(string nMainActorLast);
     void setMonth(int nMonth);
-    
-    string getKey() const override;//get a unique key
+       
+    bool operator>(const Media&) const;
+    bool operator==(const Media&) const;
+    bool operator<(const Media&) const;
+    void display() const override;
 };
 
 #endif

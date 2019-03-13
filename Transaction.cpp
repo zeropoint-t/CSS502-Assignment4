@@ -10,6 +10,7 @@
 //
 // -----------------------------------------------------------------------------
 #include "Transaction.h"
+#include "Account.h"
 
 //getters
 Account* Transaction::getAccount() const
@@ -29,7 +30,7 @@ char Transaction::getActionType() const
 //setters
 void Transaction::setAccount(Account* nAccount)
 {
-    acount = nAccount;
+    account = nAccount;
 }
 void Transaction::setMedia(Media* nMedia)
 {

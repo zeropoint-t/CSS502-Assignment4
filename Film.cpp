@@ -10,6 +10,8 @@
 // -----------------------------------------------------------------------------
 
 #include "Film.h"
+#include <iostream>
+using namespace std;
 
 Film::Film(char nMediaType, char nStorageType, int nNumStock, char nFilmType, string nDirector, string nTitle, int nYear) : Media(nMediaType, nStorageType, nNumStock)
 {
@@ -18,6 +20,7 @@ Film::Film(char nMediaType, char nStorageType, int nNumStock, char nFilmType, st
     setTitle(nTitle);
     setYear(nYear);
 }
+Film::Film(){}
 Film::~Film()
 {
     
@@ -57,4 +60,32 @@ void Film::setTitle(string nTitle)
 void Film::setYear(int nYear)
 {
     year = nYear;
+}
+
+
+
+// -----------operator==(const Comedy& rhs)--------------------------------------
+// check if lhs comedy is identical to rhs comedy by title and year
+// -----------------------------------------------------------------------------
+bool Film::operator==(const Media& rhs) const {
+    return true;
+}
+
+// -----------operator<(const Comedy& rhs)--------------------------------------
+// check if lhs comedy comes before rhs comedy by title, then by year
+// -----------------------------------------------------------------------------
+bool Film::operator<(const Media& rhs) const
+{
+    return false;
+}
+// -----------operator>(const Comedy& rhs)--------------------------------------
+// check if lhs comedy comes before rhs comedy by title, then by year
+// -----------------------------------------------------------------------------
+bool Film::operator>(const Media& rhs) const
+{
+    return false;
+}
+void Film::display() const
+{
+    cout << "bob";
 }

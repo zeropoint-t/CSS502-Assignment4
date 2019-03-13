@@ -10,7 +10,14 @@
 // Class stores information about customer loaded from data4commands.txt
 // -----------------------------------------------------------------------------
 
+//demo for dan hopefully this works mopre changes
 #include "Account.h"
+
+ostream& operator<<(ostream &outStream, const Account &acct)
+{
+	outStream << acct.getFirstName() << " " << acct.getLastName() << endl;
+	return outStream;
+}
 
 Account::Account(int nAccountId, string nFirstName, string nLastName)
 {

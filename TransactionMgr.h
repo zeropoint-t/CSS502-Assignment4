@@ -105,24 +105,26 @@ void TransactionMgr::buildTransactions(const string infile)
         getline(file, s);
 
         istringstream iss(s);
-        string word;
+        string command;
 
         //read word by word
         bool firstIter = true;
-        while(iss >> word) {
+        while(iss >> command) {
             if(firstIter)
             {
                 firstIter = false;
-                if(word == "I"){//show inventory
+                if(command == "I"){//show inventory
                     cout << "Inventory" << endl;
-                }else if(word == "H"){//shwo transaction history
+                }else if(command == "H"){//shwo transaction history
                     cout << "Show Transaction History" << endl;
-                    iss >> word;
-                    int accountId = stoi(word);
-                }else if(word == "B"){//borrow
+                    string acctId;
+                    iss >> acctId;
+                    int accountId = stoi(acctId);
+                }else if(command == "B"){//borrow
                     cout << "Borrow" << endl;
-                    string accountId;
-                    iss >> accountId;
+                    string acctId;
+                    iss >> acctId;
+                    int accountId = stoi(acctId);
 
                     string storageType;
                     iss >> storageType;
@@ -133,13 +135,39 @@ void TransactionMgr::buildTransactions(const string infile)
                         iss >> filmType;
                         if(filmType == "F")//funny
                         {
-                            
+                            string title;
+                            getline(iss, title, ',');//read until delimiter
+                            string year;
+                            iss >> year;
+                            cout << "   Borrrow Funny " 
+                            << "Title:" << title << " " 
+                            << "Year:" << year << endl;
                         }else if(filmType == "C")//classic
                         {
-                            
+                            string releaseMonth;
+                            iss >> releaseMonth;
+
+                            string releaseYear;
+                            iss >> releaseYear;
+
+                            string majorActor;
+                            getline(iss, majorActor, ',');//read until delimiter
+
+                            cout << "   Borrrow Classic " 
+                            << "Release Month:" << releaseMonth << " " 
+                            << "Release Year:" << releaseYear << " "
+                            << "Major Actor:" << majorActor << endl;
                         }else if(filmType == "D")//drama
                         {
+                            string director;
+                            getline(iss, director, ',');//read until delimiter
 
+                            string title;
+                            getline(iss, title, ',');//read until delimiter
+
+                            cout << "   Borrrow Drama " 
+                            << "Director:" << director << " " 
+                            << "Title:" << title << endl;
                         }else
                         {
                             cout << "   Wrong Film Type" << endl;
@@ -149,7 +177,7 @@ void TransactionMgr::buildTransactions(const string infile)
                         cout << "   Wrong Storage Type" << endl;
                         break;
                     }
-                }else if(word == "R"){
+                }else if(command == "R"){
                     cout << "Return" << endl;
                 }else{
                     cout << "Error command" << endl;

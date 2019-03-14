@@ -40,9 +40,9 @@ public:
     void setMainActorFLast(string nMainActorLast);
     void setMonth(int nMonth);
        
-    bool operator>(const Media&) const;
-    bool operator==(const Media&) const;
-    bool operator<(const Media&) const;
+    bool operator>(const Media&) const override;
+    bool operator==(const Media&) const override;
+    bool operator<(const Media&) const override;
     void display() const override;
 };
 

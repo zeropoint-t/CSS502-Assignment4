@@ -24,9 +24,9 @@ public:
           string nDirector, string nTitle, int nYear);
     ~Drama();
 
-    bool operator>(const Media&) const;
-    bool operator==(const Media&) const;
-    bool operator<(const Media&) const;
+    bool operator>(const Media&) const override;
+    bool operator==(const Media&) const override;
+    bool operator<(const Media&) const override;
     void display() const override;
 };
 

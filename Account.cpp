@@ -10,6 +10,7 @@
 // Class stores information about customer loaded from data4commands.txt
 // -----------------------------------------------------------------------------
 
+//demo for dan hopefully this works mopre changes
 #include "Account.h"
 
 ostream& operator<<(ostream &outStream, const Account &acct)

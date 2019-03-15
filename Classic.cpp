@@ -23,7 +23,7 @@ Classic::Classic(char nMediaType, char nStorageType, int nNumStock,
                  string nMainActorFirst, string nMainActorLast, int nMonth) : Film(nMediaType, nStorageType, nNumStock, nFilmType, nDirector, nTitle, nYear)
 {
     setMainActorFirst(nMainActorFirst);
-    setMainActorFLast(nMainActorLast);
+    setMainActorLast(nMainActorLast);
     setMonth(nMonth);
 }
 
@@ -51,9 +51,9 @@ void Classic::setMainActorFirst(string nMainActorFirst)
 {
     mainActorFirst = nMainActorFirst;
 }
-void Classic::setMainActorFLast(string nMainActorLast)
+void Classic::setMainActorLast(string nMainActorLast)
 {
-    mainActorFirst = nMainActorLast;
+    mainActorLast = nMainActorLast;
 }
 void Classic::setMonth(int nMonth)
 {
@@ -119,8 +119,17 @@ bool Classic::operator>(const Media& rhs) const
     else
         return false;
 }
-void Classic::display() const
+
+void Classic::printHeader() const
 {
-    std::cout << getTitle();
+    cout << left << setw(5) << "<IN>" << left << setw(6) << "<OUT>" << left << setw(20) << "<DVD - TITLE>" << left << setw(20) << "<DIRECTOR>"
+    << left << setw(10) << "<YEAR>" << left << setw(5) << "<MO>" << left << setw(10) << "<MAIN ACTOR>" << endl;
+    cout <<
+"--------------------------------------------------------------------------------"
+    << endl;
+}
+void Classic::print() const
+{
+    cout << " " << setw(5) << getNumStock() << setw(6) << getMaxStock() - getNumStock() << left << setw(20) << getTitle() << left << setw(20) << getDirector() << left << setw(10) << getYear() << left << setw(5) << getMonth() << left << setw(5) << getMainActorFirst() << " " << getMainActorLast() << endl;
 }
 

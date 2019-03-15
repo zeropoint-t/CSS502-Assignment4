@@ -12,8 +12,12 @@
 #ifndef Film_h
 #define Film_h
 
-#include "Media.h"
+#include <iostream>
+#include <iomanip>
 #include <string>
+using namespace std;
+
+#include "Media.h"
 
 using namespace std;
 
@@ -50,7 +54,8 @@ public:
     bool operator>(const Media&) const override;
     bool operator==(const Media&) const override;
     bool operator<(const Media&) const override;
-    void display() const override;
+    void printHeader() const override;
+    void print() const override;
 };
 
 #endif

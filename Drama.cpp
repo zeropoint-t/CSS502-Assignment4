@@ -23,8 +23,8 @@ Drama::~Drama()
     
 }
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 
 // -------------------------------getKey()--------------------------------------
 // generate key, D key ---> Director and title
@@ -35,7 +35,7 @@ Drama::~Drama()
 //}
 
 
->>>>>>> 9448bef65f5bb588cca731eef8b4f36f284f7a99
+//>>>>>>> 9448bef65f5bb588cca731eef8b4f36f284f7a99
 // -----------operator==(const Drama& rhs)--------------------------------------
 // check if lhs drama is identical to rhs drama by director and title
 // -----------------------------------------------------------------------------
@@ -78,7 +78,8 @@ bool Drama::operator>(const Media& rhs) const
         return false;
 }
 
-void Drama::display() const
+void Drama::print() const
 {
-    cout << getTitle() << " " << getDirector() << " " << getYear() << endl;
+    //D key ---> Director and title
+    //cout << left << setw(25) << getDirector() << setw(20)<<" " << getTitle() << endl;
 }

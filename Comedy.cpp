@@ -9,7 +9,7 @@
 //
 // -----------------------------------------------------------------------------
 #include "Comedy.h"
-#include <iostream>
+
 
 // bool operator>(Media &m1, Media &m2)  // <--- why friend?
 // {
@@ -80,7 +80,7 @@ bool Comedy::operator>(const Media& rhs) const
         return false;
 }
 
-void Comedy::display() const
-{
-    std::cout << getTitle();
-}
+
+
+
+

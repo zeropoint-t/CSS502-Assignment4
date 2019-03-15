@@ -21,6 +21,19 @@ using namespace std;
 
 int main() {
     
+    Comedy* c = new Comedy('m', 'm', 5, 'F', "Jonesy McFarts", "The FartKnockerz", 1975);
+    c->printHeader();
+    c->print();
+    
+//    Classic(char nMediaType, char nStorageType, int nNumStock,
+//            char nFilmType, string nDirector, string nTitle, int nYear,
+//            string nMainActorFirst, string nMainActorLast, int nMonth);
+    Classic* c1 = new Classic('D', 'D', 10, 'C', "Toots McButt","Pull My Finger", 1980, "Sharty", "Pantz", 12);
+    
+    cout << endl;
+    
+    c1->printHeader();
+    c1->print();
    //link data files w/ software
     // ifstream infile1("data4movies.txt");
     // if (!infile1) {
@@ -34,8 +47,8 @@ int main() {
     //     return 2;
     // }
 
-    TransactionMgr tmgr;
-    tmgr.buildTransactions("/Users/tetsuya/Documents/Projects/CSS502AHW4/CSS502-Assignment4/data4commands.txt");
+//    TransactionMgr tmgr;
+//    tmgr.buildTransactions("/Users/tetsuya/Documents/Projects/CSS502AHW4/CSS502-Assignment4/data4commands.txt");
 
     // AccountMgr acctmgr("/Users/tetsuya/Documents/Projects/CSS502AHW4/CSS502-Assignment4/data4customers.txt");
     // Account& acct1 = acctmgr.getAccount(3333);
@@ -79,7 +92,8 @@ int main() {
 //            break;
 //    }
     
+    cout << endl;
     cout << "GREAT JOB. PROJECT DONE!!!" << endl;
 
-    return 0;
+    ;
 }

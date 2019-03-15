@@ -10,8 +10,7 @@
 // -----------------------------------------------------------------------------
 
 #include "Film.h"
-#include <iostream>
-using namespace std;
+
 
 Film::Film(char nMediaType, char nStorageType, int nNumStock, char nFilmType, string nDirector, string nTitle, int nYear) : Media(nMediaType, nStorageType, nNumStock)
 {
@@ -85,7 +84,17 @@ bool Film::operator>(const Media& rhs) const
 {
     return false;
 }
-void Film::display() const
+
+void Film::printHeader() const
 {
-    cout << "bob";
+    cout << left << setw(5) << "<IN>" << left << setw(6) << "<OUT>" << left << setw(20) << "<DVD - TITLE>" << left << setw(20) << "<DIRECTOR>"
+    << left << setw(10) << "<YEAR>" << endl;
+    cout <<
+    "---------------------------------------------------------"
+    << endl;
+}
+void Film::print() const
+{
+    
+    cout << " " << setw(5) << getNumStock() << setw(6) << getMaxStock() - getNumStock() << left << setw(20) << getTitle() << left << setw(20) << getDirector() << left << setw(10) << getYear() << endl;
 }

@@ -12,8 +12,10 @@
 #ifndef Comedy_h
 #define Comedy_h
 
-#include "Film.h"
+#include <iostream>
+#include <iomanip>
 #include <string>
+#include "Film.h"
 
 using namespace std;
 
@@ -30,7 +32,8 @@ public:
     bool operator>(const Media&) const override;
     bool operator==(const Media&) const override;
     bool operator<(const Media&) const override;
-    void display() const override;
+    
+   
 };
 
 #endif

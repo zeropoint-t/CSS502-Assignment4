@@ -42,6 +42,10 @@ int Media::getNumStock() const
 {
     return numStock;
 }
+int Media::getMaxStock() const
+{
+    return maxStock;
+}
 
 //setters
 void Media::setMaxStock(const int nNumstock)

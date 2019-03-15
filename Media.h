@@ -36,6 +36,7 @@ public:
     char getMediaType() const;
     char getStorageType() const;
     int getNumStock() const;
+    int getMaxStock() const;
     
     void setMaxStock(const int);//updates max amount of media
     void setMediaType(char nStorageType);
@@ -48,7 +49,8 @@ public:
     virtual bool operator>(const Media&) const = 0;
     virtual bool operator==(const Media&) const = 0;
     virtual bool operator<(const Media&) const = 0;
-    virtual void display() const = 0;
+    virtual void printHeader() const = 0;
+    virtual void print() const = 0;
     void borrowMedia();//increase stock by 1
     void returnMedia();//increase stock by 1
 };

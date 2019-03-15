@@ -37,13 +37,14 @@ public:
     
     //setters
     void setMainActorFirst(string nMainActorFirst);
-    void setMainActorFLast(string nMainActorLast);
+    void setMainActorLast(string nMainActorLast);
     void setMonth(int nMonth);
        
     bool operator>(const Media&) const override;
     bool operator==(const Media&) const override;
     bool operator<(const Media&) const override;
-    void display() const override;
+    void printHeader() const override;
+    void print() const override;
 };
 
 #endif

@@ -20,7 +20,7 @@
 using namespace std;
 
 int main() {
-    //hello world
+    //test
     Comedy* c = new Comedy('m', 'm', 5, 'F', "Jonesy McFarts", "The FartKnockerz", 1975);
     c->printHeader();
     c->print();

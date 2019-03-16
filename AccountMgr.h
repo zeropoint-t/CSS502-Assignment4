@@ -32,6 +32,7 @@ private:
 public:
 	//constructors & destructor
 	AccountMgr(string);
+	AccountMgr();
 	~AccountMgr();
 
 	// Account& loadAccount(int AcctId, string LastName, string FirstName);//load an account
@@ -42,6 +43,10 @@ public:
 AccountMgr::AccountMgr(string infile)
 {
 	buildAccounts(infile);
+}
+
+AccountMgr::AccountMgr()
+{
 }
 
 AccountMgr::~AccountMgr()

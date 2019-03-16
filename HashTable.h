@@ -69,7 +69,7 @@ public:
 };
 
 template <typename k, typename v>
-size_t HashTable<k,v>::maxSize = 10;
+size_t HashTable<k,v>::maxSize = 100;
 
 template <typename k, typename v>
 size_t HashTable<k,v>::curSize;

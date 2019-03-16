@@ -22,7 +22,8 @@
 #include "Transaction.h"
 #include "Media.h"
 #include "Account.h"
-#include "InventoryMgr.h"
+// #include "InventoryMgr.h"
+#include "AccountMgr.h"
 
 using namespace std;
 
@@ -31,10 +32,11 @@ class TransactionMgr
 private:
     vector<Transaction> trans;
     InventoryMgr* invMgr;
+    AccountMgr* acctMgr;
 
 public:
     //constructors & destructor
-    TransactionMgr(string infile, InventoryMgr& inv);
+    TransactionMgr(InventoryMgr*, AccountMgr*);
     TransactionMgr();
     ~TransactionMgr();
 
@@ -75,9 +77,10 @@ public:
     void printInventory() const;//print inventory
 };
 
-TransactionMgr::TransactionMgr(string infile, InventoryMgr& inv)
+TransactionMgr::TransactionMgr(InventoryMgr* inv, AccountMgr* aMgr)
 {
-
+    this->invMgr = inv;
+    this->acctMgr = aMgr;
 }
 
 TransactionMgr::TransactionMgr()
@@ -125,6 +128,18 @@ void TransactionMgr::buildTransactions(const string infile)
                     string acctId;
                     iss >> acctId;
                     int accountId = stoi(acctId);
+
+                    if(acctMgr != nullptr)
+                    {
+                        Account& acct = acctMgr->getAccount(accountId);
+                        if((&acct) == nullptr)//check if this account exists
+                        {
+                            cout << "   CustomerId is " << accountId << " is not valid" << endl;
+                            break;
+                        }
+
+                        cout << acct.getFirstName() << endl;
+                    }
 
                     string storageType;
                     iss >> storageType;

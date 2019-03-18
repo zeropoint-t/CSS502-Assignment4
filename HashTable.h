@@ -35,7 +35,7 @@ private:
 
     void add(const k& key, const v& value, hashPtr*& table);
 
-    // void addFront(const k& key, const v& value, hashPtr*& table);
+    void addFront(const k& key, const v& value, hashPtr*& table);
 
     void deleteAll(hashPtr*& table, size_t size);
 

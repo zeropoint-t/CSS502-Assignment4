@@ -23,6 +23,7 @@
 #include "Media.h"
 #include "Account.h"
 #include "AccountMgr.h"
+#include "InventoryMgr.h"
 #include "HashTable.h"
 
 using namespace std;
@@ -79,9 +80,10 @@ public:
 };
 
 TransactionMgr::TransactionMgr(InventoryMgr* inv, AccountMgr* aMgr)
+    :invMgr(inv), acctMgr(aMgr)
 {
-    this->invMgr = inv;
-    this->acctMgr = aMgr;
+    // this->invMgr = inv;
+    // this->acctMgr = aMgr;
 }
 
 TransactionMgr::TransactionMgr()
@@ -130,17 +132,17 @@ void TransactionMgr::buildTransactions(const string infile)
                     iss >> acctId;
                     int accountId = stoi(acctId);
 
-                    if(acctMgr != nullptr)
-                    {
-                        Account& acct = acctMgr->getAccount(accountId);
-                        if((&acct) == nullptr)//check if this account exists
-                        {
-                            cout << "   CustomerId is " << accountId << " is not valid" << endl;
-                            break;
-                        }
+                    // if(acctMgr != nullptr)
+                    // {
+                    //     Account& acct = acctMgr->getAccount(accountId);
+                    //     if((&acct) == nullptr)//check if this account exists
+                    //     {
+                    //         cout << "   CustomerId is " << accountId << " is not valid" << endl;
+                    //         break;
+                    //     }
 
-                        cout << acct.getFirstName() << endl;
-                    }
+                    //     cout << acct.getFirstName() << endl;
+                    // }
 
                     string storageType;
                     iss >> storageType;

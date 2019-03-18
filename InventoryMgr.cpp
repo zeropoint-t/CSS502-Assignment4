@@ -1,89 +1,345 @@
-////#include "pch.h"
-//#include "InventoryMgr.h"
-//InventoryMgr::InventoryMgr() {
-//    /*for (vector<MediaTree*>::iterator it = MediaTreesVec.begin(); it != MediaTreesVec.end(); it++) {
-//     *it = new MediaTree();
-//     }*/
-//}
-//
-//bool InventoryMgr::insert(Media * med) {
-//    //cout << typeid(*med).name() << endl;
-//    //const string s = string(typeid(*med).name());
-//    //cout << s << endl;
-//    MediaTree* temp = nullptr;
-//    MediaTree* current = nullptr;
-//    bool classfound = false;
-//    for (vector<MediaTree*>::iterator it = MediaTreesVec.begin(); it != MediaTreesVec.end(); it++) {
-//        //cout << "step1" << endl;
-//        current = *it;
-//        //cout << "existing trees already have " << typeid(*temp2->getRoot()->getData()).name() << endl;
-//        if (typeid(*(current->getRoot()->getData())).name() == typeid(*med).name()) { // no trees
-//            cout << "another " << typeid(*med).name() << "film" << endl;
-//            temp = *it;
-//        }
-//        //else {
-//        //    //if (typeid(temp.getData()).name() == typeid(*med).name()) { // found the root of a tree of class type
-//        //    //        //MediaNode temp = *it;
-//        //    //    comedyTree.inser
-//        //    //        cout << temp.getData() << endl;
-//        //    //    //}
-//        //    }
-//        
-//    }
-//    //if (MediaTreesVec.size() == 0 || classfound == false) {
-//    if (temp == nullptr && (string(typeid(*med).name())).compare("class Comedy") == 0) {
-//        cout << "Comedy Film" << endl;
-//        MediaTree * comedyTree = new MediaTree();
-//        cout << "Comedy Tree Created" << endl;
-//        comedyTree->insert(med);
-//        cout << "Comedy Tree PushedBack" << endl;
-//        MediaTreesVec.push_back(comedyTree);
-//        return true;
-//    }
-//    if (temp == nullptr && (string(typeid(*med).name())).compare("class Classic") == 0) {
-//        cout << "Classic Film" << endl;
-//        MediaTree * classicTree = new MediaTree();
-//        cout << "Classic Tree Created" << endl;
-//        classicTree->insert(med);
-//        cout << "Classic Tree PushedBack" << endl;
-//        MediaTreesVec.push_back(classicTree);
-//        return true;
-//    }
-//    if (temp == nullptr && (string(typeid(*med).name())).compare("class Drama") == 0) {
-//        cout << "Drama Film" << endl;
-//        MediaTree * dramaTree = new MediaTree();
-//        cout << "Drama Tree Created" << endl;
-//        dramaTree->insert(med);
-//        cout << "Drama Tree PushedBack" << endl;
-//        MediaTreesVec.push_back(dramaTree);
-//        return true;
-//    }
-//    if (temp != nullptr && (string(typeid(*med).name())).compare("class Comedy") == 0) {
-//        cout << "Comedy Film" << endl;
-//        cout << "Comedy Tree already exists" << endl;
-//        temp->insert(med);
-//        return true;
-//    }
-//    if (temp != nullptr && (string(typeid(*med).name())).compare("class Classic") == 0) {
-//        cout << "Classic Film" << endl;
-//        cout << "Classic Tree already exists" << endl;
-//        temp->insert(med);
-//        return true;
-//    }
-//    if (temp != nullptr && (string(typeid(*med).name())).compare("class Drama") == 0) {
-//        cout << "Drama Film" << endl;
-//        cout << "Drama Tree already exists" << endl;
-//        temp->insert(med);
-//        return true;
-//    }
-//    //}
-//    return false;
-//}
-//
-//void InventoryMgr::printInv() {
-//    for (vector<MediaTree*>::iterator it = MediaTreesVec.begin(); it != MediaTreesVec.end(); it++) {
-//        MediaTree * temp = *it;
-//        temp->inOrderTraversal(temp->getRoot());
-//        //cout << endl;
-//    }
-//}
+
+#include "InventoryMgr.h"
+
+//constructors/destructor
+InventoryMgr::InventoryMgr() {
+	/*for (vector<MediaTree*>::iterator it = MediaTreesVec.begin(); it != MediaTreesVec.end(); it++) {
+		*it = new MediaTree();
+	}*/
+}
+
+InventoryMgr::InventoryMgr(string infile) {
+	this->buildInv(infile);
+}
+
+InventoryMgr::~InventoryMgr() {
+}
+
+MediaTree* InventoryMgr::findMediaTree(const Media* med)
+{
+	MediaTree* temp = nullptr; 
+	MediaTree* current = nullptr;
+	bool classfound = false;
+	for (vector<MediaTree*>::iterator it = MediaTreesVec.begin(); it != MediaTreesVec.end(); it++) {
+
+		current = *it;
+		if (typeid(*(current->getRoot()->getData())).name() == typeid(*med).name()) { // no trees 
+			return *it;
+		}
+	}
+
+	return nullptr;
+}
+
+bool InventoryMgr::insert(Media * med) {	
+
+	Film * film = dynamic_cast<Film*>(med);
+
+	if(film == nullptr)
+		return false;
+
+	MediaTree* temp = nullptr;
+
+	temp = findMediaTree(med);
+
+	if(temp == nullptr){
+
+		if(film->getFilmType() == 'F')
+		{
+			MediaTree * comedyTree = new MediaTree();
+
+			comedyTree->insert(med);
+
+			MediaTreesVec.push_back(comedyTree);
+
+			return true;
+		} else if (film->getFilmType() == 'C') 
+		{
+			MediaTree * classicTree = new MediaTree();
+
+			classicTree->insert(med);
+
+			MediaTreesVec.push_back(classicTree);
+
+			return true;
+		} else if (film->getFilmType() == 'D') 
+		{
+			MediaTree * dramaTree = new MediaTree();
+
+			dramaTree->insert(med);
+
+			MediaTreesVec.push_back(dramaTree);
+
+			return true;
+		}
+	}else{
+
+		if (film->getFilmType() == 'F') {			
+			//cout << "Comedy Film" << endl;
+			//cout << "Comedy Tree already exists" << endl;
+			if (temp->find(temp->getRoot(), med)) {
+				//cout << "Input stock" <<med->getNumStock() << endl;
+				//cout << "existing stock"  << temp->retrieveStock(temp->getRoot(), med) << endl;
+				//med->setNumStock((med->getNumStock() + temp->retrieveStock(temp->getRoot(), med)));				
+				//cout << "new film stock should be " << (med->getNumStock()) << endl;
+				//*****Media * existing = temp->retrieveMedia(temp->getRoot(), med);
+				//cout << endl;
+				//existing->print();
+				//cout << endl;
+				//******existing->setNumStock(med->getNumStock() + existing->getNumStock());
+				//*******existing->setMaxStock(med->getNumStock() /*+ existing->getMaxStock()*/);
+				//med->setMaxStock(med->getNumStock() + temp->retrieveStock(temp->getRoot(), med));
+				//cout << endl;
+				//existing->print();
+				//cout << endl;
+				//*****med->setNumStock(0);
+				med->print();
+				cout << endl;
+				cout << "The film already exists in the DB" << endl;
+				temp->insert(med);
+			}
+			else {
+				temp->insert(med);
+			}
+			return true;
+		}
+
+		if (film->getFilmType() == 'C') {
+			//cout << "Classic Film" << endl;
+			//cout << "Classic Tree already exists" << endl;
+			if (temp->find(temp->getRoot(), med)) {
+				//cout << "Input stock" <<med->getNumStock() << endl;
+				//cout << "existing stock"  << temp->retrieveStock(temp->getRoot(), med) << endl;
+				//med->setNumStock((med->getNumStock() + temp->retrieveStock(temp->getRoot(), med)));				
+				//cout << "new film stock should be " << (med->getNumStock()) << endl;
+				//Media * existing = temp->retrieveMedia(temp->getRoot(), med);
+				//cout << endl;
+				//existing->print();
+				//cout << endl;
+				//existing->setNumStock(med->getNumStock() + existing->getNumStock());
+				//existing->setMaxStock(med->getNumStock() /*+ existing->getMaxStock()*/);
+				//med->setMaxStock(med->getNumStock() + temp->retrieveStock(temp->getRoot(), med));
+				//cout << endl;
+				//existing->print();
+				//cout << endl;
+				//med->setNumStock(0);
+				med->print();
+				cout << endl;
+				cout << "The film already exists in the DB" << endl;
+				temp->insert(med);
+			}
+			else {
+				temp->insert(med);
+			}
+			return true;
+		}
+
+		if (film->getFilmType() == 'D') {
+			//cout << "Drama Film" << endl;
+			//cout << "Drama Tree already exists" << endl;
+			if (temp->find(temp->getRoot(), med)) {
+				//cout << "Input stock" <<med->getNumStock() << endl;
+				//cout << "existing stock"  << temp->retrieveStock(temp->getRoot(), med) << endl;
+				//med->setNumStock((med->getNumStock() + temp->retrieveStock(temp->getRoot(), med)));				
+				//cout << "new film stock should be " << (med->getNumStock()) << endl;
+				//Media * existing = temp->retrieveMedia(temp->getRoot(), med);
+				//cout << endl;
+				//existing->print();
+				//cout << endl;
+				//existing->setNumStock(med->getNumStock() + existing->getNumStock());
+				//existing->setMaxStock(med->getNumStock() /*+ existing->getMaxStock()*/);
+				//med->setMaxStock(med->getNumStock() + temp->retrieveStock(temp->getRoot(), med));
+				//cout << endl;
+				//existing->print();
+				//cout << endl;
+				//med->setNumStock(0);
+				//temp->insert(med);
+				med->print();
+				cout << endl;
+				cout << "The film already exists in the DB" << endl;
+				temp->insert(med);
+			}
+			else {
+				temp->insert(med);
+			}
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void InventoryMgr::printInv() {
+	for (vector<MediaTree*>::iterator it = MediaTreesVec.begin(); it != MediaTreesVec.end(); it++) {
+		MediaTree * temp = *it;
+		const char * type = typeid(*(temp->getRoot()->getData())).name();
+		string typestr(type);
+		cout << typestr << endl;
+		temp->getRoot()->getData()->printHeader();
+		temp->inOrderTraversal(temp->getRoot());
+	}
+}
+
+void InventoryMgr::buildInv(string filePath) {
+	ifstream file(filePath);
+	if (!file)
+	{
+		cout << "File could not be opened." << endl;
+		return;
+	}
+
+	while (!file.eof()) {
+		int stock=0;
+		string director;
+		string title;
+		int year;
+		int month;
+		string mainActorFirst;
+		string mainActorLast;
+		string s;
+		getline(file, s);
+
+		istringstream iss(s);
+		//string film;
+		//unsigned i = 0;
+		if (!s.empty()) {
+			char filmType = s.at(0);
+			if (filmType == 'C' || filmType == 'F' || filmType == 'D') {
+				if (filmType == 'F' || filmType == 'D') {
+					string delimiter = ", ";
+					size_t pos = 0;
+					string token;
+					int i = 1;
+					while ((pos = s.find(delimiter)) != std::string::npos) {
+						token = s.substr(0, pos);
+						//cout << i << endl;
+						if (i == 2) {
+							stringstream stockss(token);
+							stockss >> stock;
+							//cout << "stock is " << stock << endl;
+						}
+						if (i == 3) {
+							//stringstream directorss(token);
+							//directorss >> director;
+							director = token;
+							//cout << "Director is " << director << endl;
+						}
+						if (i == 4) {
+							//stringstream directorss(token);
+							//directorss >> director;
+							title = token;
+							//cout << "Title is " << title << endl;
+						}
+						//cout << token << std::endl;
+						s.erase(0, pos + delimiter.length());
+						i++;
+					}
+					stringstream yearss(s);
+					yearss >> year;
+					//cout << "year is " << year << endl;
+					//cout << s << std::endl;
+
+					if (filmType == 'F') {
+						Media * med = new Comedy('F', 'D', stock, 'F', director, title, year);
+						this->insert(med);
+					}
+					else {
+						Media * med = new Drama('F', 'D', stock, 'D', director, title, year);
+						this->insert(med);
+					}
+				}
+				else {
+					string delimiter = ", ";
+					size_t pos = 0;
+					string token;
+					int i = 1;
+					while ((pos = s.find(delimiter)) != std::string::npos) {
+						token = s.substr(0, pos);
+						//if (i > 3) {
+						//	string delimiter2 = " ";
+						//	size_t pos2 = 0;
+						//	string token2;
+						//	while ((pos2 = token.find(delimiter2)) != std::string::npos) {
+						//		token2 = token.substr(0, pos2);
+						//		//cout << "beep" << endl;
+						//		std::cout << token2 << std::endl;
+						//		token.erase(0, pos2 + delimiter2.length());
+						//	}
+						//}					
+						//cout << i << endl;
+						if (i == 2) {
+							stringstream stockss(token);
+							stockss >> stock;
+							//	cout << "stock is " << stock << endl;
+						}
+						if (i == 3) {
+							director = token;
+							//cout << "Director is " << director << endl;
+						}
+						if (i == 4) {
+							title = token;
+							//cout << "Title is " << title << endl;
+						}
+						//cout << token << std::endl;
+						s.erase(0, pos + delimiter.length());
+						i++;
+					}
+
+					string delimiter2 = " ";
+					size_t pos2 = 0;
+					string token2;
+					while ((pos2 = s.find(delimiter2)) != std::string::npos) {
+						token2 = s.substr(0, pos2);
+						//cout << i << endl;
+						if (i == 5) {
+							mainActorFirst = token2;
+							//cout << "Main Actor first is " << mainActorFirst << endl;
+						}
+						if (i == 6) {
+							mainActorLast = token2;
+							//cout << "Main Actor Last is " << mainActorLast << endl;
+						}
+						if (i == 7) {
+							stringstream monthss(token2);
+							monthss >> month;
+							//cout << "month is " << month << endl;
+						}
+						//cout << token2 << std::endl;
+						s.erase(0, pos2 + delimiter2.length());
+
+						i++;
+					}
+					stringstream yearss(s);
+					yearss >> year;
+					//cout << "Year is " << year << endl;
+
+					//cout << s << std::endl;
+
+					Media * med = new Classic('F', 'D', stock, 'C', director, title, year, mainActorFirst, mainActorLast, month);
+					this->insert(med);
+				}
+			}
+
+			else {
+				cout << "ERROR: Genre: " << s.at(0) << " not found" << endl;
+			}
+		}
+	}
+}
+
+bool InventoryMgr::incInv(Media& med){
+
+	return true;
+};//increment stock count
+
+bool InventoryMgr::decInv(Media& med){
+	return true;
+};//decrement stock count
+
+int InventoryMgr::getStock(Media& med)
+{
+	MediaTree* temp = nullptr;
+	temp = findMediaTree(&med);
+	int stock = temp->retrieveStock(temp->getRoot(), &med);
+	return stock;	
+};//return s

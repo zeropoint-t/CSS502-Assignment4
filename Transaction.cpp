@@ -11,6 +11,17 @@
 // -----------------------------------------------------------------------------
 #include "Transaction.h"
 #include "Account.h"
+#include "Media.h"
+
+Transaction::Transaction(Account* account, Media* media, char actionType)
+    :account(account), media(media), actionType(actionType)
+{
+
+}
+
+Transaction::Transaction(){}
+
+Transaction::~Transaction(){}
 
 //getters
 Account* Transaction::getAccount() const

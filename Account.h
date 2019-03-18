@@ -31,6 +31,7 @@ private:
 public:
 	//constructors & destructor
 	Account(int nAccountId, string nFisrtName, string nLastName);
+    Account();
 	~Account();
 
 	//getters

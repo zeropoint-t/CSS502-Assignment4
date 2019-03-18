@@ -22,15 +22,16 @@
 #include "Transaction.h"
 #include "Media.h"
 #include "Account.h"
-// #include "InventoryMgr.h"
 #include "AccountMgr.h"
+#include "HashTable.h"
 
 using namespace std;
 
 class TransactionMgr
 {
 private:
-    vector<Transaction> trans;
+    vector<Transaction*> transactions;
+    // HashTable<int, Transaction*> transactions; // Account and int customerID
     InventoryMgr* invMgr;
     AccountMgr* acctMgr;
 
@@ -203,8 +204,20 @@ void TransactionMgr::buildTransactions(const string infile)
     }
 }
 
-bool TransactionMgr::borrowMedia(const Media&, const Account&, const char actionType)
+bool TransactionMgr::borrowMedia(const Media& med, const Account& acct, const char actionType)
 {
+    // int stock = invMgr->getStock(&med);
+    // if(stock > 0)
+    // {
+    //     Transaction trans = new Transaction(acct, med, actionType);
+    //     if(invMgr->decInv(med))
+    //     {      
+    //         // transactions.addFront(acct.AccountId, trans);
+    //     }
+    // }else
+    // {
+    //     return false;//no stock
+    // }
     return true;
 }
 
@@ -215,7 +228,11 @@ bool TransactionMgr::returnMedia(const Media&, const Account&, const char action
 
 void TransactionMgr::printAccountHistory(const int acctId) const
 {
-
+    // HashNode<int, Transaction*>* node = transactions.get(acctId);
+    // while(node != nullptr)
+    // {
+    //     // cout << node->getValue()->getMedia()->getMediaType() << endl;
+    // }
 }
 
 void TransactionMgr::printInventory() const

@@ -14,9 +14,6 @@
 
 #include <iostream>
 #include <fstream>
-#include "InventoryMgr.h"
-#include "AccountMgr.h"
-#include "TransactionMgr.h"
 #include "HashNode.h"
 
 using namespace std;

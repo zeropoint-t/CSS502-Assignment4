@@ -25,9 +25,6 @@
 #include "MediaTree.h"
 #include "MediaNode.h"
 #include "Media.h"
-//#include "Hash.h"
-//#include "Transaction.h"
-//#include "Media.h"
 
 using namespace std;
 

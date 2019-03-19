@@ -20,8 +20,6 @@
 #include <string>
 
 #include "Transaction.h"
-#include "Media.h"
-#include "Account.h"
 #include "AccountMgr.h"
 #include "InventoryMgr.h"
 #include "HashTable.h"
@@ -31,8 +29,8 @@ using namespace std;
 class TransactionMgr
 {
 private:
-    vector<Transaction*> transactions;
-    // HashTable<int, Transaction*> transactions; // Account and int customerID
+    // vector<Transaction*> transactions;
+    HashTable<int, Transaction*> transactions; // Account and int customerID
     InventoryMgr* invMgr;
     AccountMgr* acctMgr;
 
@@ -54,14 +52,14 @@ public:
         --- returning movies not borrowed
     */
 
-    bool borrowMedia(const Media&, const Account&, const char actionType);//borrow media
+    bool borrowMedia(Media&, Account&, const char actionType);//borrow media
     /*    
         //assume that invariance checks have been done already
         create a transaction object for borrow action
         push the object to transaction vector
         return true
     */
-    bool returnMedia(const Media&, const Account&, const char actionType);//return media
+    bool returnMedia(Media&, Account&, const char actionType);//return media
     /*
         //assume that invariance checks have been done already
         create a transaction object for return action
@@ -80,10 +78,9 @@ public:
 };
 
 TransactionMgr::TransactionMgr(InventoryMgr* inv, AccountMgr* aMgr)
-    :invMgr(inv), acctMgr(aMgr)
+:invMgr(inv), acctMgr(aMgr)
 {
-    // this->invMgr = inv;
-    // this->acctMgr = aMgr;
+
 }
 
 TransactionMgr::TransactionMgr()
@@ -132,63 +129,66 @@ void TransactionMgr::buildTransactions(const string infile)
                     iss >> acctId;
                     int accountId = stoi(acctId);
 
-                    // if(acctMgr != nullptr)
-                    // {
-                    //     Account& acct = acctMgr->getAccount(accountId);
-                    //     if((&acct) == nullptr)//check if this account exists
-                    //     {
-                    //         cout << "   CustomerId is " << accountId << " is not valid" << endl;
-                    //         break;
-                    //     }
+                    //check account is valid
+                    if(acctMgr != nullptr)
+                    {
 
-                    //     cout << acct.getFirstName() << endl;
-                    // }
-
-                    string storageType;
-                    iss >> storageType;
-
-                    //check storage type
-                    if(storageType == "D"){//DVD
-                        string filmType;
-                        iss >> filmType;
-                        if(filmType == "F")//funny
+                        Account& acct = acctMgr->getAccount(accountId);
+                        if((&acct) == nullptr)//check if this account exists
                         {
-                            string title;
-                            getline(iss, title, ',');//read until delimiter
-                            string year;
-                            iss >> year;
-                            cout << "   Borrrow Funny " 
-                            << "Title:" << title << " " 
-                            << "Year:" << year << endl;
-                        }else if(filmType == "C")//classic
-                        {
-                            string releaseMonth;
-                            iss >> releaseMonth;
+                            cout << "   CustomerId is " << accountId << " is not valid" << endl;
+                            break;
+                        }
 
-                            string releaseYear;
-                            iss >> releaseYear;
+                        // cout << acct.getFirstName() << endl;
 
-                            string majorActor;
-                            getline(iss, majorActor, ',');//read until delimiter
+                        string storageType;
+                        iss >> storageType;
 
-                            cout << "   Borrrow Classic " 
-                            << "Release Month:" << releaseMonth << " " 
-                            << "Release Year:" << releaseYear << " "
-                            << "Major Actor:" << majorActor << endl;
-                        }else if(filmType == "D")//drama
-                        {
-                            string director;
-                            getline(iss, director, ',');//read until delimiter
+                        //check storage type
+                        if(storageType == "D"){//DVD
+                            string filmType;
+                            iss >> filmType;
+                            if(filmType == "F")//funny
+                            {
+                                string title;
+                                getline(iss, title, ',');//read until delimiter
+                                string year;
+                                iss >> year;
+                                cout << "   Borrrow Funny " 
+                                << "Title:" << title << " " 
+                                << "Year:" << year << endl;
+                                
+                            }else if(filmType == "C")//classic
+                            {
+                                string releaseMonth;
+                                iss >> releaseMonth;
 
-                            string title;
-                            getline(iss, title, ',');//read until delimiter
+                                string releaseYear;
+                                iss >> releaseYear;
 
-                            cout << "   Borrrow Drama " 
-                            << "Director:" << director << " " 
-                            << "Title:" << title << endl;
-                        }else
-                        {
-                            cout << "   Wrong Film Type" << endl;
+                                string majorActor;
+                                getline(iss, majorActor, ',');//read until delimiter
+
+                                cout << "   Borrrow Classic " 
+                                << "Release Month:" << releaseMonth << " " 
+                                << "Release Year:" << releaseYear << " "
+                                << "Major Actor:" << majorActor << endl;
+                            }else if(filmType == "D")//drama
+                            {
+                                string director;
+                                getline(iss, director, ',');//read until delimiter
+
+                                string title;
+                                getline(iss, title, ',');//read until delimiter
+
+                                cout << "   Borrrow Drama " 
+                                << "Director:" << director << " " 
+                                << "Title:" << title << endl;
+                            }else
+                            {
+                                cout << "   Wrong Film Type" << endl;
+                            }
                         }
                     }
                     else{
@@ -206,24 +206,24 @@ void TransactionMgr::buildTransactions(const string infile)
     }
 }
 
-bool TransactionMgr::borrowMedia(const Media& med, const Account& acct, const char actionType)
+bool TransactionMgr::borrowMedia(Media& med, Account& acct, const char actionType)
 {
-    // int stock = invMgr->getStock(&med);
-    // if(stock > 0)
-    // {
-    //     Transaction trans = new Transaction(acct, med, actionType);
-    //     if(invMgr->decInv(med))
-    //     {      
-    //         // transactions.addFront(acct.AccountId, trans);
-    //     }
-    // }else
-    // {
-    //     return false;//no stock
-    // }
+    int stock = invMgr->getStock(med);
+    if(stock > 0)
+    {
+        Transaction* trans = new Transaction(&acct, &med, actionType);
+        if(invMgr->decInv(med))
+        {      
+            transactions.addFront(acct.getAccountId(), trans);
+        }
+    }else
+    {
+        return false;//no stock
+    }
     return true;
 }
 
-bool TransactionMgr::returnMedia(const Media&, const Account&, const char actionType)
+bool TransactionMgr::returnMedia(Media&, Account&, const char actionType)
 {
     return true;
 }

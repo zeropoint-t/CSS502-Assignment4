@@ -61,7 +61,12 @@ void Classic::setMonth(int nMonth)
 bool Classic::operator==(const Media& rhs) const {
 
 	const Classic& c = static_cast<const Classic&>(rhs);
-	return (getYear() == c.getYear() && getMonth() == c.getMonth() && getTitle() == c.getTitle());
+	return (
+		getYear() == c.getYear() 
+		&& getMonth() == c.getMonth() 
+		&& getMainActorFirst() == c.getMainActorFirst()
+		&& getMainActorLast() == c.getMainActorLast()
+	);
 }
 
 

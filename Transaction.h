@@ -19,11 +19,16 @@ using namespace std;
 
 class Transaction
 {
+private:
     Account* account;
     Media* media;
     char actionType;
     
 public:
+    Transaction(Account*, Media*, char);
+    Transaction();
+    ~Transaction();
+
     //getters
     Account* getAccount() const;
     Media* getMedia() const;

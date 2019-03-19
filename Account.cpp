@@ -25,6 +25,9 @@ Account::Account(int nAccountId, string nFirstName, string nLastName)
     setFirstName(nFirstName);
     setLastName(nLastName);
 }
+
+Account::Account(){}
+
 Account::~Account()
 {
     

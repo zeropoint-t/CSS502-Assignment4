@@ -14,9 +14,6 @@
 
 #include <iostream>
 #include <fstream>
-#include "InventoryMgr.h"
-#include "AccountMgr.h"
-#include "TransactionMgr.h"
 #include "HashNode.h"
 
 using namespace std;
@@ -34,7 +31,9 @@ private:
     void growTable();
 
     void add(const k& key, const v& value, hashPtr*& table);
-    
+
+    void addFront(const k& key, const v& value, hashPtr*& table);
+
     void deleteAll(hashPtr*& table, size_t size);
 
 public:
@@ -44,7 +43,11 @@ public:
 
     bool get(const k& key, v& value);
 
+    HashNode<k, v>* get(const k& key);
+
     void add(const k& key, const v& value);
+
+    void addFront(const k& key, const v& value);
 
     void remove(const k& key);
 
@@ -69,7 +72,7 @@ public:
 };
 
 template <typename k, typename v>
-size_t HashTable<k,v>::maxSize = 10;
+size_t HashTable<k,v>::maxSize = 100;
 
 template <typename k, typename v>
 size_t HashTable<k,v>::curSize;
@@ -155,6 +158,44 @@ void HashTable<k,v>::add(const k& key, const v& value, hashPtr*& table)
 }
 
 template <typename k, typename v>
+void HashTable<k,v>::addFront(const k& key, const v& value, hashPtr*& table)
+{
+    unsigned long hashValue = getHash(key);
+    hashPtr prev = nullptr;
+    hashPtr cur = table[hashValue];
+
+    while (cur != nullptr && cur->getKey() != key)
+    {
+        prev = cur;
+        cur = cur->getNext();
+    }
+
+    if (cur == nullptr)//insert
+    {
+        cur = new HashNode<k, v>(key, value);
+
+        if (prev == nullptr)//very first node
+        {
+            table[hashValue] = cur;//insert
+        } else 
+        {
+            prev->setNext(cur);
+        }
+
+        curSize++;//increment current item count
+    } else {//found the same key so add the new node at the head
+        hashPtr newNode = new HashNode<k, v>(key, value);
+        newNode->setNext(cur);
+        table[hashValue] = newNode;
+    }
+
+    //grow table size
+    // if(curSize / (double)maxSize > 0.8){
+    //     growTable();
+    // }
+}
+
+template <typename k, typename v>
 void HashTable<k,v>::deleteAll(hashPtr*& table, size_t size)
 {
     // destroy all nodes one by one
@@ -194,10 +235,33 @@ bool HashTable<k,v>::get(const k& key, v& value)
     return false;
 }
 
+//returns head hashnode
+template <typename k, typename v>
+HashNode<k, v>* HashTable<k,v>::get(const k& key)
+{
+    unsigned long hashValue = getHash(key);
+    hashPtr cur = arr[hashValue];
+
+    while (cur != nullptr) {
+        if (cur->getKey() == key) {
+            return cur;
+        }
+        cur = cur->getNext();
+    }
+
+    return nullptr;
+}
+
 template <typename k, typename v>
 void HashTable<k,v>::add(const k& key, const v& value)
 {
     add(key, value, arr);
+}
+
+template <typename k, typename v>
+void HashTable<k,v>::addFront(const k& key, const v& value)
+{
+    addFront(key, value, arr);
 }
 
 template <typename k, typename v>

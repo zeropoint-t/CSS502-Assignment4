@@ -20,21 +20,23 @@
 #include <string>
 
 #include "Transaction.h"
-#include "Media.h"
-#include "Account.h"
+#include "AccountMgr.h"
 #include "InventoryMgr.h"
+#include "HashTable.h"
 
 using namespace std;
 
 class TransactionMgr
 {
 private:
-    vector<Transaction> trans;
+    // vector<Transaction*> transactions;
+    HashTable<int, Transaction*> transactions; // Account and int customerID
     InventoryMgr* invMgr;
+    AccountMgr* acctMgr;
 
 public:
     //constructors & destructor
-    TransactionMgr(string infile, InventoryMgr& inv);
+    TransactionMgr(InventoryMgr*, AccountMgr*);
     TransactionMgr();
     ~TransactionMgr();
 
@@ -50,14 +52,14 @@ public:
         --- returning movies not borrowed
     */
 
-    bool borrowMedia(const Media&, const Account&, const char actionType);//borrow media
+    bool borrowMedia(Media&, Account&, const char actionType);//borrow media
     /*    
         //assume that invariance checks have been done already
         create a transaction object for borrow action
         push the object to transaction vector
         return true
     */
-    bool returnMedia(const Media&, const Account&, const char actionType);//return media
+    bool returnMedia(Media&, Account&, const char actionType);//return media
     /*
         //assume that invariance checks have been done already
         create a transaction object for return action
@@ -75,7 +77,8 @@ public:
     void printInventory() const;//print inventory
 };
 
-TransactionMgr::TransactionMgr(string infile, InventoryMgr& inv)
+TransactionMgr::TransactionMgr(InventoryMgr* inv, AccountMgr* aMgr)
+:invMgr(inv), acctMgr(aMgr)
 {
 
 }
@@ -105,51 +108,94 @@ void TransactionMgr::buildTransactions(const string infile)
         getline(file, s);
 
         istringstream iss(s);
-        string word;
+        string command;
 
         //read word by word
         bool firstIter = true;
-        while(iss >> word) {
+        while(iss >> command) {
             if(firstIter)
             {
                 firstIter = false;
-                if(word == "I"){//show inventory
+                if(command == "I"){//show inventory
                     cout << "Inventory" << endl;
-                }else if(word == "H"){//shwo transaction history
+                }else if(command == "H"){//shwo transaction history
                     cout << "Show Transaction History" << endl;
-                    iss >> word;
-                    int accountId = stoi(word);
-                }else if(word == "B"){//borrow
+                    string acctId;
+                    iss >> acctId;
+                    int accountId = stoi(acctId);
+                }else if(command == "B"){//borrow
                     cout << "Borrow" << endl;
-                    string accountId;
-                    iss >> accountId;
+                    string acctId;
+                    iss >> acctId;
+                    int accountId = stoi(acctId);
 
-                    string storageType;
-                    iss >> storageType;
+                    //check account is valid
+                    if(acctMgr != nullptr)
+                    {
 
-                    //check storage type
-                    if(storageType == "D"){//DVD
-                        string filmType;
-                        iss >> filmType;
-                        if(filmType == "F")//funny
+                        Account& acct = acctMgr->getAccount(accountId);
+                        if((&acct) == nullptr)//check if this account exists
                         {
-                            
-                        }else if(filmType == "C")//classic
-                        {
-                            
-                        }else if(filmType == "D")//drama
-                        {
+                            cout << "   CustomerId is " << accountId << " is not valid" << endl;
+                            break;
+                        }
 
-                        }else
-                        {
-                            cout << "   Wrong Film Type" << endl;
+                        // cout << acct.getFirstName() << endl;
+
+                        string storageType;
+                        iss >> storageType;
+
+                        //check storage type
+                        if(storageType == "D"){//DVD
+                            string filmType;
+                            iss >> filmType;
+                            if(filmType == "F")//funny
+                            {
+                                string title;
+                                getline(iss, title, ',');//read until delimiter
+                                string year;
+                                iss >> year;
+                                cout << "   Borrrow Funny " 
+                                << "Title:" << title << " " 
+                                << "Year:" << year << endl;
+                                
+                            }else if(filmType == "C")//classic
+                            {
+                                string releaseMonth;
+                                iss >> releaseMonth;
+
+                                string releaseYear;
+                                iss >> releaseYear;
+
+                                string majorActor;
+                                getline(iss, majorActor, ',');//read until delimiter
+
+                                cout << "   Borrrow Classic " 
+                                << "Release Month:" << releaseMonth << " " 
+                                << "Release Year:" << releaseYear << " "
+                                << "Major Actor:" << majorActor << endl;
+                            }else if(filmType == "D")//drama
+                            {
+                                string director;
+                                getline(iss, director, ',');//read until delimiter
+
+                                string title;
+                                getline(iss, title, ',');//read until delimiter
+
+                                cout << "   Borrrow Drama " 
+                                << "Director:" << director << " " 
+                                << "Title:" << title << endl;
+                            }else
+                            {
+                                cout << "   Wrong Film Type" << endl;
+                            }
                         }
                     }
                     else{
                         cout << "   Wrong Storage Type" << endl;
                         break;
                     }
-                }else if(word == "R"){
+                }else if(command == "R"){
                     cout << "Return" << endl;
                 }else{
                     cout << "Error command" << endl;
@@ -160,19 +206,35 @@ void TransactionMgr::buildTransactions(const string infile)
     }
 }
 
-bool TransactionMgr::borrowMedia(const Media&, const Account&, const char actionType)
+bool TransactionMgr::borrowMedia(Media& med, Account& acct, const char actionType)
 {
+    int stock = invMgr->getStock(med);
+    if(stock > 0)
+    {
+        Transaction* trans = new Transaction(&acct, &med, actionType);
+        if(invMgr->decInv(med))
+        {      
+            transactions.addFront(acct.getAccountId(), trans);
+        }
+    }else
+    {
+        return false;//no stock
+    }
     return true;
 }
 
-bool TransactionMgr::returnMedia(const Media&, const Account&, const char actionType)
+bool TransactionMgr::returnMedia(Media&, Account&, const char actionType)
 {
     return true;
 }
 
 void TransactionMgr::printAccountHistory(const int acctId) const
 {
-
+    // HashNode<int, Transaction*>* node = transactions.get(acctId);
+    // while(node != nullptr)
+    // {
+    //     // cout << node->getValue()->getMedia()->getMediaType() << endl;
+    // }
 }
 
 void TransactionMgr::printInventory() const

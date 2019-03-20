@@ -4,7 +4,7 @@
 // Creation Date:               03/03/2019
 // Date of Last Modification:   03/03/2019
 // -----------------------------------------------------------------------------
-// Store - represents a media rental store
+// Store - represents a media rental store - public interface
 // -----------------------------------------------------------------------------
 // Notes on specifications, special algorithms, and assumptions.
 // -----------------------------------------------------------------------------

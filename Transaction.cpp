@@ -13,6 +13,9 @@
 #include "Account.h"
 #include "Media.h"
 
+//------------------------------------------------------------------------------
+// constructor - passes parameters to media parent
+//
 Transaction::Transaction(Account* account, Media* media, char actionType)
     :account(account), media(media), actionType(actionType)
 {

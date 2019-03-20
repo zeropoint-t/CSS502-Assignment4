@@ -19,9 +19,9 @@ using namespace std;
 class Transaction
 {
 private:
-    Account* account;
-    Media* media;
-    char actionType;
+    Account* account;//refers to account which borrowed or returned
+    Media* media;//refers to media item
+    char actionType;//borrowed or returned
     
 public:
     Transaction(Account*, Media*, char);

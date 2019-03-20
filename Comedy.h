@@ -16,7 +16,11 @@ public:
 	//constructors & destructor
 	Comedy(char nMediaType, char nStorageType, int nNumStock, char nFilmType,
 		string nDirector, string nTitle, int nYear);
+
+	Comedy(string nTitle, int nYear);
+
 	Comedy();
+
 	~Comedy();
 
 	bool operator>(const Media&) const override;

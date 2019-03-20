@@ -171,9 +171,13 @@ bool InventoryMgr::insert(Media * med) {
 
 void InventoryMgr::printInv() {
 	for (vector<MediaTree*>::iterator it = MediaTreesVec.begin(); it != MediaTreesVec.end(); it++) {
+		
 		MediaTree * temp = *it;
 		const char * type = typeid(*(temp->getRoot()->getData())).name();
 		string typestr(type);
+		typestr.erase(remove_if(typestr.begin(), typestr.end(), [](char c) { return !isalpha(c); } ), typestr.end());//remove numbers from class name 
+		
+		cout << endl;
 		cout << typestr << endl;
 		temp->getRoot()->getData()->printHeader();
 		temp->inOrderTraversal(temp->getRoot());
@@ -328,11 +332,12 @@ void InventoryMgr::buildInv(string filePath) {
 }
 
 bool InventoryMgr::incInv(Media& med){
-
+	med.setNumStock(med.getNumStock()+1);
 	return true;
 };//increment stock count
 
 bool InventoryMgr::decInv(Media& med){
+	med.setNumStock(med.getNumStock()-1);
 	return true;
 };//decrement stock count
 
@@ -342,4 +347,12 @@ int InventoryMgr::getStock(Media& med)
 	temp = findMediaTree(&med);
 	int stock = temp->retrieveStock(temp->getRoot(), &med);
 	return stock;	
-};//return s
+};
+
+Media* InventoryMgr::getMedia(Media& med)
+{
+	MediaTree* temp = nullptr;
+	temp = findMediaTree(&med);
+	Media* pMed = temp->retrieveMedia(temp->getRoot(), &med);
+	return pMed;
+}

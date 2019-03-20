@@ -1,6 +1,3 @@
-
-
-
 #include "MediaTree.h"
 
 MediaTree::MediaTree() {
@@ -196,17 +193,21 @@ bool MediaTree::find(MediaNode * n, Media * data) {
 }
 
 int MediaTree::retrieveStock(MediaNode * n, Media * data) {
+	//base case
+	if(n == nullptr)
+		return 0;
+
 	int stock = 0;
-	bool found = false;
+	// bool found = false;
 	if (*n->getData() == *data) {
-		found = true;
-		return n->getData()->getMaxStock();
-	}
-	else {
-		if (n->getLeft() != nullptr && !found)
-			stock = find(n->getLeft(), data);
-		if (n->getRight() != nullptr && !found)
-			stock = find(n->getRight(), data);
+		// found = true;
+		return n->getData()->getNumStock();
+	} else 
+	{
+		if (n->getLeft() != nullptr && n->getLeft()->getData() < n->getData())
+			stock = retrieveStock(n->getLeft(), data);
+		else if (n->getRight() != nullptr && n->getData() < n->getRight()->getData())
+			stock = retrieveStock(n->getRight(), data);
 	}
 	return stock;
 }

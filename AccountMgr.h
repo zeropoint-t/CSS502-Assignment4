@@ -36,7 +36,7 @@ public:
 	~AccountMgr();
 
 	// Account& loadAccount(int AcctId, string LastName, string FirstName);//load an account
-	Account& getAccount(int accountId);//returns an account object for the accountid
+	Account* getAccount(int accountId);//returns an account object for the accountid
 };
 
 #endif

@@ -53,8 +53,9 @@ bool Drama::operator<(const Media& rhs) const
 	else if (getDirector() == d.getDirector()) {
 		return (getTitle() < d.getTitle());
 	}
-	else
-		return false;
+	// else
+
+	return false;
 }
 // -----------operator>(const Drama& rhs)--------------------------------------
 // check if lhs drama comes before rhs drama by director, then by title
@@ -68,8 +69,8 @@ bool Drama::operator>(const Media& rhs) const
 	else if (getDirector() == d.getDirector()) {
 		return (getTitle() > d.getTitle());
 	}
-	else
-		return false;
+	// else
+	return false;
 }
 
 //void Drama::print() const

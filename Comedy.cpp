@@ -21,6 +21,12 @@ Comedy::Comedy(char nMediaType, char nStorageType, int nNumStock, char nFilmType
 
 }
 
+Comedy::Comedy(string nTitle, int nYear)
+{
+	setTitle(nTitle);
+	setYear(nYear);
+}
+
 Comedy::Comedy()
 {
 
@@ -36,6 +42,8 @@ Comedy::~Comedy()
 // -----------------------------------------------------------------------------
 bool Comedy::operator==(const Media& rhs) const {
 	const Comedy& c = static_cast<const Comedy&>(rhs);
+	// cout << "lhs " << getTitle() << " " << getYear() << endl;
+	// cout << "rhs " << c.getTitle() << " " << c.getYear() << endl;
 	return (getTitle() == c.getTitle() && getYear() == c.getYear());
 }
 
@@ -52,8 +60,9 @@ bool Comedy::operator<(const Media& rhs) const
 	else if (getTitle() == c.getTitle()) {
 		return (getYear() < c.getYear());
 	}
-	else
-		return false;
+	// else
+
+	return false;
 }
 // -----------operator>(const Comedy& rhs)--------------------------------------
 // check if lhs comedy comes before rhs comedy by title, then by year
@@ -66,6 +75,6 @@ bool Comedy::operator>(const Media& rhs) const
 	else if (getTitle() == c.getTitle()) {
 		return (getYear() > c.getYear());
 	}
-	else
-		return false;
+	// else
+	return false;
 }

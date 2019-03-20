@@ -186,7 +186,11 @@ void HashTable<k,v>::addFront(const k& key, const v& value, hashPtr*& table)
     } else {//found the same key so add the new node at the head
         hashPtr newNode = new HashNode<k, v>(key, value);
         newNode->setNext(cur);
-        table[hashValue] = newNode;
+
+        if(prev != nullptr)
+            prev->setNext(newNode);
+        else
+            table[hashValue] = newNode;
     }
 
     //grow table size

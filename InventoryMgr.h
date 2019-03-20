@@ -55,13 +55,14 @@ private:
 public:
 	//constructors & destructor
 	InventoryMgr();
-	InventoryMgr(string infile);
+	InventoryMgr(string);
 	~InventoryMgr();
-	bool insert(Media* med);
-	bool incInv(Media& med);//increment stock count
-	bool decInv(Media& med);//decrement stock count
-	int getStock(Media& med);//return s
+	bool insert(Media*);
+	bool incInv(Media&);//increment stock count
+	bool decInv(Media&);//decrement stock count
+	int getStock(Media&);//return s
 	void printInv();//print inventory
+	Media* getMedia(Media&);
 };
 
 #endif

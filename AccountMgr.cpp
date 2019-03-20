@@ -62,12 +62,12 @@ void AccountMgr::buildAccounts(string infile)
 		accounts.add(accountId, pAccout);
 	}
 
-	accounts.showItems();
+	// accounts.showItems();
 }
 
-Account& AccountMgr::getAccount(int accountId)
+Account* AccountMgr::getAccount(int accountId)
 {
 	Account* acct = nullptr;
 	accounts.get(accountId, acct);
-	return *acct;
+	return acct;
 }

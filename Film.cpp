@@ -78,14 +78,25 @@ bool Film::operator>(const Media& rhs) const
 
 void Film::printHeader() const
 {
-	cout << left << setw(5) << "<IN>" << left << setw(6) << "<OUT>" << left << setw(20) << "<DVD - TITLE>" << left << setw(20) << "<DIRECTOR>"
-		<< left << setw(10) << "<YEAR>" << endl;
+	cout << left << setw(4) << "<IN>" 
+	<< setw(4) << "<OUT>" 
+	<< setw(30) << "<DVD - TITLE>" 
+	<< setw(20) << "<DIRECTOR>" 
+	<< setw(10) << "<YEAR>" 
+	<< endl;
 	cout <<
-		"---------------------------------------------------------"
+		"------------------------------------------------------------------"
 		<< endl;
 }
+
 void Film::print() const
 {
-
-	cout << " " << setw(5) << getNumStock() << setw(6) << getMaxStock() - getNumStock() << left << setw(20) << getTitle() << left << setw(20) << getDirector() << left << setw(10) << getYear() << endl;
+	string title = getTitle() ;
+	title.resize(28);
+	cout << " " 
+	<< setw(4) << getNumStock() 
+	<< setw(4) << getMaxStock() - getNumStock()
+	<< setw(30) << title 
+	<< setw(20) << getDirector() 
+	<< setw(10) << getYear();
 }

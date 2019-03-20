@@ -1,4 +1,13 @@
-
+// --------------------------------------InventoryMgr.cpp-------------------------
+// Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
+// Course Section Number:       CSS502A - Winter 2019
+// Creation Date:               03/03/2019
+// Date of Last Modification:   03/03/2019
+// -----------------------------------------------------------------------------
+// InventoryMgr - Header file - in charge of inventory related tasks
+// -----------------------------------------------------------------------------
+// Notes on specifications, special algorithms, and assumptions.
+//------------------------------------------------------------------------------
 #include "InventoryMgr.h"
 
 //constructors/destructor
@@ -171,9 +180,13 @@ bool InventoryMgr::insert(Media * med) {
 
 void InventoryMgr::printInv() {
 	for (vector<MediaTree*>::iterator it = MediaTreesVec.begin(); it != MediaTreesVec.end(); it++) {
+		
 		MediaTree * temp = *it;
 		const char * type = typeid(*(temp->getRoot()->getData())).name();
 		string typestr(type);
+		typestr.erase(remove_if(typestr.begin(), typestr.end(), [](char c) { return !isalpha(c); } ), typestr.end());//remove numbers from class name 
+		
+		cout << endl;
 		cout << typestr << endl;
 		temp->getRoot()->getData()->printHeader();
 		temp->inOrderTraversal(temp->getRoot());
@@ -328,11 +341,12 @@ void InventoryMgr::buildInv(string filePath) {
 }
 
 bool InventoryMgr::incInv(Media& med){
-
+	med.setNumStock(med.getNumStock()+1);
 	return true;
 };//increment stock count
 
 bool InventoryMgr::decInv(Media& med){
+	med.setNumStock(med.getNumStock()-1);
 	return true;
 };//decrement stock count
 
@@ -342,4 +356,12 @@ int InventoryMgr::getStock(Media& med)
 	temp = findMediaTree(&med);
 	int stock = temp->retrieveStock(temp->getRoot(), &med);
 	return stock;	
-};//return s
+};
+
+Media* InventoryMgr::getMedia(Media& med)
+{
+	MediaTree* temp = nullptr;
+	temp = findMediaTree(&med);
+	Media* pMed = temp->retrieveMedia(temp->getRoot(), &med);
+	return pMed;
+}

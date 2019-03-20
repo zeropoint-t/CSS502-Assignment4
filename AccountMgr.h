@@ -1,15 +1,13 @@
-
-// ------------------------------------------------ file name -------------------------------------------------------
+// ----------------------------------------AccountMgr.h-------------------------
 // Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
 // Course Section Number:       CSS502A - Winter 2019
 // Creation Date:               03/03/2019
-// Date of Last Modification:   03/03/2019
-// ------------------------------------------------------------------------------------------------------------------
-// AccountMgr - Header file - in charge of account related tasks
-// ------------------------------------------------------------------------------------------------------------------
-// Notes on specifications, special algorithms, and assumptions.
-// ------------------------------------------------------------------------------------------------------------------
-
+// Date of Last Modification:   03/07/2019
+// -----------------------------------------------------------------------------
+// AccountMgr - header file - represent an account
+// -----------------------------------------------------------------------------
+// Class stores information about customer loaded from data4commands.txt
+// -----------------------------------------------------------------------------
 #ifndef AccuntMgr_h
 #define AccuntMgr_h
 
@@ -36,7 +34,7 @@ public:
 	~AccountMgr();
 
 	// Account& loadAccount(int AcctId, string LastName, string FirstName);//load an account
-	Account& getAccount(int accountId);//returns an account object for the accountid
+	Account* getAccount(int accountId);//returns an account object for the accountid
 };
 
 #endif

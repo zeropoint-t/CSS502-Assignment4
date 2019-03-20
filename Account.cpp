@@ -1,4 +1,3 @@
-
 // ----------------------------------------Account.cpp--------------------------
 // Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
 // Course Section Number:       CSS502A - Winter 2019

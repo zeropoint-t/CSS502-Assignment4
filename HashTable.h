@@ -1,13 +1,13 @@
-// ------------------------------------------------ file name -------------------------------------------------------
+// ----------------------------------------------HashTable.h--------------------
 // Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
 // Course Section Number:       CSS502A - Winter 2019
 // Creation Date:               03/03/2019
 // Date of Last Modification:   03/03/2019
-// ------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Hash - Header file - Custom Hash Class
-// ------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Notes on specifications, special algorithms, and assumptions.
-// ------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 #ifndef HashTable_h
 #define HashTable_h
@@ -72,7 +72,7 @@ public:
 };
 
 template <typename k, typename v>
-size_t HashTable<k,v>::maxSize = 100;
+size_t HashTable<k,v>::maxSize = 83;
 
 template <typename k, typename v>
 size_t HashTable<k,v>::curSize;
@@ -186,7 +186,11 @@ void HashTable<k,v>::addFront(const k& key, const v& value, hashPtr*& table)
     } else {//found the same key so add the new node at the head
         hashPtr newNode = new HashNode<k, v>(key, value);
         newNode->setNext(cur);
-        table[hashValue] = newNode;
+
+        if(prev != nullptr)
+            prev->setNext(newNode);
+        else
+            table[hashValue] = newNode;
     }
 
     //grow table size

@@ -1,4 +1,13 @@
-
+// ----------------------------------------AccountMgr.cpp-----------------------
+// Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
+// Course Section Number:       CSS502A - Winter 2019
+// Creation Date:               03/03/2019
+// Date of Last Modification:   03/07/2019
+// -----------------------------------------------------------------------------
+// AccountMgr - implementation file - represent an account
+// -----------------------------------------------------------------------------
+// Class stores information about customer loaded from data4commands.txt
+// -----------------------------------------------------------------------------
 
 #include "AccountMgr.h"
 
@@ -62,12 +71,12 @@ void AccountMgr::buildAccounts(string infile)
 		accounts.add(accountId, pAccout);
 	}
 
-	accounts.showItems();
+	// accounts.showItems();
 }
 
-Account& AccountMgr::getAccount(int accountId)
+Account* AccountMgr::getAccount(int accountId)
 {
 	Account* acct = nullptr;
 	accounts.get(accountId, acct);
-	return *acct;
+	return acct;
 }

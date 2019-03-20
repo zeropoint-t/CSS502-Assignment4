@@ -1,4 +1,11 @@
-
+// -------------------------------------Classic.cpp-----------------------------
+// Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
+// Course Section Number:       CSS502A - Winter 2019
+// Creation Date:               03/03/2019
+// Date of Last Modification:   03/03/2019
+// -----------------------------------------------------------------------------
+// adds main actor, and month
+// -----------------------------------------------------------------------------
 #include "Classic.h"
 #include <iostream>
 
@@ -94,8 +101,8 @@ bool Classic::operator<(const Media& rhs) const
 			return (getMainActorLast() < c.getMainActorLast());
 		}
 	}
-	else
-		return false;
+	// else
+	return false;
 }
 // -----------operator>(const Classic& rhs)--------------------------------------
 // check if lhs classic comes before rhs classic by year, then by actor
@@ -125,19 +132,35 @@ bool Classic::operator>(const Media& rhs) const
 		else
 			return false;
 	}
-	else
-		return false;
+	// else
+
+	return false;
 }
 
 void Classic::printHeader() const
 {
-	cout << left << setw(5) << "<IN>" << left << setw(6) << "<OUT>" << left << setw(20) << "<DVD - TITLE>" << left << setw(20) << "<DIRECTOR>"
-		<< left << setw(10) << "<YEAR>" << left << setw(5) << "<MO>" << left << setw(10) << "<MAIN ACTOR>" << endl;
+	cout << left 
+	<< setw(4) << "<IN>" 
+	<< setw(4) << "<OUT>" 
+	<< setw(24) << "<DVD - TITLE>" 
+	<< setw(13) << "<DIRECTOR>" 
+	<< setw(5) << "<YEAR>" 
+	<< setw(3) << "<MO>" 
+	<< setw(10) << "<MAIN ACTOR>" 
+	<< endl;
+
 	cout <<
-		"--------------------------------------------------------------------------------"
+		"-------------------------------------------------------------------------"
 		<< endl;
 }
 void Classic::print() const
 {
-	cout << " " << setw(5) << getNumStock() << setw(6) << getMaxStock() - getNumStock() << left << setw(20) << getTitle() << left << setw(20) << getDirector() << left << setw(10) << getYear() << left << setw(5) << getMonth() << left << setw(5) << getMainActorFirst() << " " << getMainActorLast() << endl;
+	cout << " " << left
+	<< setw(4) << getNumStock() 
+	<< setw(4) << getMaxStock() - getNumStock() 
+	<< setw(24) << getTitle() 
+	<< setw(15) << getDirector() 
+	<< setw(5) << getYear() 
+	<< setw(3) << getMonth() 
+	<< setw(10) << getMainActorFirst() << " " << getMainActorLast();
 }

@@ -1,3 +1,11 @@
+// -------------------------------------Drama.cpp-------------------------------
+// Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
+// Course Section Number:       CSS502A - Winter 2019
+// Creation Date:               03/03/2019
+// Date of Last Modification:   03/03/2019
+// -----------------------------------------------------------------------------
+// Drama and Comedy share same methods and members
+// -----------------------------------------------------------------------------
 
 #include "Drama.h"
 #include <iostream>
@@ -53,8 +61,8 @@ bool Drama::operator<(const Media& rhs) const
 	else if (getDirector() == d.getDirector()) {
 		return (getTitle() < d.getTitle());
 	}
-	else
-		return false;
+
+	return false;
 }
 // -----------operator>(const Drama& rhs)--------------------------------------
 // check if lhs drama comes before rhs drama by director, then by title
@@ -68,8 +76,8 @@ bool Drama::operator>(const Media& rhs) const
 	else if (getDirector() == d.getDirector()) {
 		return (getTitle() > d.getTitle());
 	}
-	else
-		return false;
+
+	return false;
 }
 
 //void Drama::print() const

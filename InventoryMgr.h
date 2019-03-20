@@ -1,14 +1,13 @@
-
-// ------------------------------------------------ file name -------------------------------------------------------
+// --------------------------------------InventoryMgr.h-------------------------
 // Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
 // Course Section Number:       CSS502A - Winter 2019
 // Creation Date:               03/03/2019
 // Date of Last Modification:   03/03/2019
-// ------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // InventoryMgr - Header file - in charge of inventory related tasks
-// ------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Notes on specifications, special algorithms, and assumptions.
-// ------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 #ifndef InventoryMgr_h
 #define InventoryMgr_h
@@ -55,13 +54,14 @@ private:
 public:
 	//constructors & destructor
 	InventoryMgr();
-	InventoryMgr(string infile);
+	InventoryMgr(string);
 	~InventoryMgr();
-	bool insert(Media* med);
-	bool incInv(Media& med);//increment stock count
-	bool decInv(Media& med);//decrement stock count
-	int getStock(Media& med);//return s
+	bool insert(Media*);
+	bool incInv(Media&);//increment stock count
+	bool decInv(Media&);//decrement stock count
+	int getStock(Media&);//return s
 	void printInv();//print inventory
+	Media* getMedia(Media&);
 };
 
 #endif

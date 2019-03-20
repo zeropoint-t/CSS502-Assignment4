@@ -18,6 +18,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <typeinfo>//typeid
+
 #include "Comedy.h"
 #include "Drama.h"
 #include "Classic.h"

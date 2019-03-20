@@ -1,0 +1,27 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-std=c++11",
+                "${workspaceFolder}/*.cpp",
+                "-o",
+                "${workspaceFolder}/main"
+            ],
+            // "label": "build",
+            // "type": "shell",
+            // "command": "g++ -g ${workspaceFolder}/LeetCode/TwoSum/main.cpp -o ${workspaceFolder}/LeetCode/TwoSum/main",
+            "group": {
+                "kind": "build",
+            "isDefault": true
+            },
+            "problemMatcher": "$gcc"
+        }
+    ]
+}

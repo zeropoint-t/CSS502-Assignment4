@@ -7,8 +7,7 @@
 // Transaction - header - transaction item stored in vector in TransactionMgr
 // contains info on which account, type of media, and type of transaction occured
 // -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
+
 #ifndef Transaction_h
 #define Transaction_h
 

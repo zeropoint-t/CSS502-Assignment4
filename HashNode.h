@@ -1,3 +1,13 @@
+// -------------------------------------HashNode.h------------------------------
+// Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
+// Course Section Number:       CSS502A - Winter 2019
+// Creation Date:               03/03/2019
+// Date of Last Modification:   03/03/2019
+// -----------------------------------------------------------------------------
+// HashNode - TEMPLATE - Custom Hash Class
+// -----------------------------------------------------------------------------
+// Used to store customers in media management system
+// -----------------------------------------------------------------------------
 #ifndef HASHNODE_h
 #define HASHNODE_h
 

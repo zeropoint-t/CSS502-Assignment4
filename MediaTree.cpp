@@ -112,8 +112,6 @@ void MediaTree::inOrderTraversal(MediaNode * n) {
 // --------------------void BinTree::makeEmptyHelper(Node * n)------------------------------
 // Description: helper function for makeEmpty function, it does post order traversal to remove nodes and nodedata left, right, node
 // ---------------------------------------------------------------------------------------------------
-
-
 void MediaTree::makeEmptyHelper(MediaNode * n)
 {
 	if (n == nullptr)

@@ -7,6 +7,7 @@
 // Media - basic inventory item that all other films and genres inherit form
 // -----------------------------------------------------------------------------
 
+#include <iostream>
 #include "Media.h"
 
 Media::Media(char nMediaType, char nStorageType, int nNumStock)
@@ -25,7 +26,7 @@ Media::Media(char nMediaType, char nStorageType, int nNumStock)
 Media::Media() {}
 Media::~Media()
 {
-
+	// cout << "Destroy Media at" << this << endl;
 }
 
 //getters

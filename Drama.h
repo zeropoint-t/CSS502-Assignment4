@@ -21,8 +21,10 @@ public:
 	//constructors & destructor
 	Drama(char nMediaType, char nStorageType, int nNumStock, char nFilmType,
 		string nDirector, string nTitle, int nYear);
+		
 	Drama();
-	~Drama();
+
+	~Drama() override = default;;
 
 	bool operator>(const Media&) const override;
 	bool operator==(const Media&) const override;

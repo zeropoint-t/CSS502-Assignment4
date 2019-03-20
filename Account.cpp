@@ -29,7 +29,7 @@ Account::Account(){}
 
 Account::~Account()
 {
-    
+    // cout << "Destroy Account: " << getFirstName() << " " << getLastName() << endl;
 }
 
 //getters

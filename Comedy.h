@@ -28,7 +28,7 @@ public:
 
 	Comedy();
 
-	~Comedy();
+	~Comedy() override = default;
 
 	bool operator>(const Media&) const override;
 	bool operator==(const Media&) const override;

@@ -40,10 +40,10 @@ Comedy::Comedy()
 
 }
 
-Comedy::~Comedy()
-{
+// Comedy::~Comedy()
+// {
 
-}
+// }
 
 // -----------operator==(const Comedy& rhs)--------------------------------------
 // check if lhs comedy is identical to rhs comedy by title and year

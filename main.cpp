@@ -28,11 +28,13 @@ int main() {
 
     AccountMgr* am = new AccountMgr("data4customers.txt");
     InventoryMgr* inv = new InventoryMgr("data4movies.txt");
-    TransactionMgr tmgr(inv, am);
-    tmgr.buildTransactions("data4commands.txt");
+    TransactionMgr* tmgr = new TransactionMgr(inv, am);
+    tmgr->buildTransactions("data4commands.txt");
 
     cout << endl;
     cout << "GREAT JOB. PROJECT DONE!!!" << endl;
 
-    ;
+    delete tmgr;
+    delete am;
+    delete inv;
 }

@@ -26,8 +26,10 @@ public:
 	Classic(char nMediaType, char nStorageType, int nNumStock,
 		char nFilmType, string nDirector, string nTitle, int nYear,
 		string nMainActorFirst, string nMainActorLast, int nMonth);
+
 	Classic();
-	~Classic();
+
+	~Classic() override = default;
 
 	//getters
 	string getMainActorFirst() const;

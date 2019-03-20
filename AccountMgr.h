@@ -16,6 +16,7 @@
 #include <sstream>
 #include <string>
 #include <stdexcept>
+#include <vector>
 
 #include "Account.h"
 #include "HashTable.h"
@@ -24,7 +25,8 @@ using namespace std;
 
 class AccountMgr {
 private:
-    HashTable<int, Account*> accounts; // Account and int customerID
+	vector<int>* accountList;
+    HashTable<int, Account*>* accounts; // Account and int customerID
 	void buildAccounts(string);
 
 public:

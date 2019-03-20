@@ -22,6 +22,10 @@ InventoryMgr::InventoryMgr(string infile) {
 }
 
 InventoryMgr::~InventoryMgr() {
+	for(auto it = MediaTreesVec.begin(); it != MediaTreesVec.end(); it++)
+	{
+		delete *it;
+	}
 }
 
 MediaTree* InventoryMgr::findMediaTree(const Media* med)

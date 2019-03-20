@@ -31,7 +31,7 @@ public:
 	Film(char mediaType, char storageType, int numStock, char filmType,
 		string director, string title, int year);
 	Film();
-	~Film();
+	~Film() override = default;;
 
 	//getters
 	char getFilmType() const;

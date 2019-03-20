@@ -23,6 +23,8 @@ private:
 public:
     HashNode(const k &key, const v &value);
 
+    ~HashNode();
+
     k getKey() const;
 
     v getValue() const;
@@ -38,6 +40,12 @@ template<typename k, typename v>
 HashNode<k,v>::HashNode(const k &key, const v &value) :
     _key(key), _value(value), _next(NULL)
 {
+}
+
+template<typename k, typename v>
+HashNode<k,v>::~HashNode()
+{
+    // cout << "Destroy HashNode" << endl;
 }
 
 template<typename k, typename v>

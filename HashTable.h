@@ -211,7 +211,6 @@ void HashTable<k,v>::deleteAll(hashPtr*& table, size_t size)
         {
             hashPtr prev = cur;
             cur = cur->getNext();
-            // cout << "deleting " << *(prev->getValue()) << endl;
             delete prev;
         }
 

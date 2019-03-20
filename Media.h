@@ -27,7 +27,7 @@ public:
 	//constructors & destructor
 	Media(char mediaType, char storageType, int numStock);
 	Media();
-	~Media();
+	virtual ~Media();
 
 	//getters/setters
 	char getMediaType() const;

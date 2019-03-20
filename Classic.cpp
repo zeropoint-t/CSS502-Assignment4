@@ -29,10 +29,10 @@ Classic::Classic()
 
 }
 
-Classic::~Classic()
-{
+// Classic::~Classic()
+// {
 
-}
+// }
 
 //getters
 string Classic::getMainActorFirst() const

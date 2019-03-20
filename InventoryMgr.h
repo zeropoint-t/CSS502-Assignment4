@@ -33,13 +33,8 @@ class InventoryMgr
 {
 private:
 	int stockCount;
-	// vector<Media> mediaVect;
 	vector <MediaTree*> MediaTreesVec;
-	//MediaTree classic;
-	//MediaTree drama;
-	//MediaTree comdey;
-	//Hash<string, Media*> inventory;//key:film type(C,F,D), value:Media pointer
-	//void sort();
+
 	void buildInv(string filePath);
 	/*
 		buildInv(){

@@ -14,16 +14,28 @@
 //constructor
 AccountMgr::AccountMgr(string infile)
 {
+	accountList = new vector<int>();
+	accounts = new HashTable<int, Account*>();
 	buildAccounts(infile);
 }
 
 AccountMgr::AccountMgr()
 {
+	accounts = new HashTable<int, Account*>();
 }
 
 AccountMgr::~AccountMgr()
 {
-
+	cout << "Destructor AccountMgr" << endl;
+	//delete all accounts
+	for(auto it = accountList->begin(); it != accountList->end(); it++)
+	{
+		Account* account = getAccount(*it);
+		if(account != nullptr)
+			delete account;
+	}
+	delete accountList;
+	delete accounts;
 }
 
 void AccountMgr::buildAccounts(string infile)
@@ -68,7 +80,8 @@ void AccountMgr::buildAccounts(string infile)
 		Account* pAccout = new Account(accountId, firstName, lastName);
 
 		//add to accounts
-		accounts.add(accountId, pAccout);
+		accountList->push_back(accountId);
+		accounts->add(accountId, pAccout);
 	}
 
 	// accounts.showItems();
@@ -77,6 +90,6 @@ void AccountMgr::buildAccounts(string infile)
 Account* AccountMgr::getAccount(int accountId)
 {
 	Account* acct = nullptr;
-	accounts.get(accountId, acct);
+	accounts->get(accountId, acct);
 	return acct;
 }

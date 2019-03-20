@@ -18,10 +18,10 @@ Film::Film(char nMediaType, char nStorageType, int nNumStock, char nFilmType, st
 
 Film::Film() {}
 
-Film::~Film()
-{
+// Film::~Film()
+// {
 
-}
+// }
 
 //getters
 char Film::getFilmType() const

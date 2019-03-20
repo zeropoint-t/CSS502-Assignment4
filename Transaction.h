@@ -7,8 +7,7 @@
 // Transaction - header - transaction item stored in vector in TransactionMgr
 // contains info on which account, type of media, and type of transaction occured
 // -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
+
 #ifndef Transaction_h
 #define Transaction_h
 
@@ -20,9 +19,9 @@ using namespace std;
 class Transaction
 {
 private:
-    Account* account;
-    Media* media;
-    char actionType;
+    Account* account;//refers to account which borrowed or returned
+    Media* media;//refers to media item
+    char actionType;//borrowed or returned
     
 public:
     Transaction(Account*, Media*, char);

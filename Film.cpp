@@ -1,4 +1,11 @@
-
+// -------------------------------------Film.cpp----------------------------------
+// Programmer Names:            Tetsuya Hayashi/Eddie Raskin/Ahmed Nada
+// Course Section Number:       CSS502A - Winter 2019
+// Creation Date:               03/03/2019
+// Date of Last Modification:   03/03/2019
+// -----------------------------------------------------------------------------
+// Film - inherits from media, adds additional functionality
+// -----------------------------------------------------------------------------
 #include "Film.h"
 
 Film::Film(char nMediaType, char nStorageType, int nNumStock, char nFilmType, string nDirector, string nTitle, int nYear) : Media(nMediaType, nStorageType, nNumStock)

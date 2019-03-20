@@ -290,7 +290,7 @@ void TransactionMgr::printAccountHistory(const int acctId)
     Account* pAcct = acctMgr->getAccount(acctId);
     if(pAcct != nullptr)
     {
-        cout << endl;
+        cout << left << endl;
 
         //print customer header
         cout << "------------------------AccountId: " << pAcct->getAccountId() << " ";
@@ -306,77 +306,83 @@ void TransactionMgr::printAccountHistory(const int acctId)
                 Film* film = dynamic_cast<Film*>(node->getValue()->getMedia());
                 if(film->getFilmType() == 'F')//funny
                 {
-                    cout << left << setw(7) << setw(7) << setw(25) << 
-                    setw(15) << setw(6) << setw(3) << setw(5);
-
                     Comedy* pComedy = dynamic_cast<Comedy*>(film);
                     if(pComedy != nullptr)
                     {
                         if(pComedy->getStorageType() == 'D')//DVD
-                            cout << "DVD";
+                            cout << left << setw(4) << "DVD" ;
                         
+                        string action = "";
                         if(node->getValue()->getActionType() == 'B')//borrow
-                            cout << setw(7) << "Borrow";
+                        {
+                            action = "Borrow";
+                        }
                         else if(node->getValue()->getActionType() == 'R')//return
-                            cout << setw(7) << "Return";
+                        {
+                            action = "Return";
+                        }
 
+                        cout << setw(7) << action;
                         string title = film->getTitle();
-                        title.resize(23);
-                        cout << setw(25) << title;
-                        cout << setw(15) << pComedy->getDirector();
+                        if(title.length() > 23) title.resize(23);
+                        cout << setw(25) << title ;
+                        cout << setw(18) << pComedy->getDirector();
                         cout << setw(6) << film->getYear();
-                        cout << setw(3);
-                        cout << setw(5) << endl;
                     }
                 }else if(film->getFilmType() == 'C')
                 {
-                    cout << left << setw(7) << setw(7) << setw(25) <<
-                    setw(15) << setw(6) << setw(3) << setw(5);
-
                     Classic* pClassic = dynamic_cast<Classic*>(film);
                     if(pClassic != nullptr)
                     {
                         if(pClassic->getStorageType() == 'D')//DVD
-                            cout << "DVD";
+                            cout << left << setw(4) << "DVD" ;
                         
+                        string action = "";
                         if(node->getValue()->getActionType() == 'B')//borrow
-                            cout << setw(7) << "Borrow";
+                        {
+                            action = "Borrow";
+                        }
                         else if(node->getValue()->getActionType() == 'R')//return
-                            cout << setw(7) << "Return";
+                        {
+                            action = "Return";
+                        }
 
+                        cout << setw(7) << action;
                         string title = film->getTitle();
-                        title.resize(23);
+                        if(title.length() > 23) title.resize(23);
                         cout << setw(25) << title;
-                        cout << setw(15) << pClassic->getDirector();
+                        cout << setw(18) << pClassic->getDirector();
                         cout << setw(6) << film->getYear();
                         cout << setw(3) << pClassic->getMonth();
-                        cout << setw(5) << pClassic->getMainActorFirst() << " " << pClassic->getMainActorLast() << endl;
+                        cout << setw(1) << pClassic->getMainActorFirst() << " " << pClassic->getMainActorLast();
                     }
                 }else if(film->getFilmType() == 'D')
                 {
-                    cout << left << setw(7) << setw(7) << setw(25) <<
-                    setw(15) << setw(6) << setw(3) << setw(5);
-
                     Drama* pDrama = dynamic_cast<Drama*>(film);
                     if(pDrama != nullptr)
                     {
                         if(pDrama->getStorageType() == 'D')//DVD
-                            cout << "DVD";
+                            cout << left << setw(4) << "DVD" ;
                         
+                        string action = "";
                         if(node->getValue()->getActionType() == 'B')//borrow
-                            cout << setw(7) << "Borrow";
+                        {
+                            action = "Borrow";
+                        }
                         else if(node->getValue()->getActionType() == 'R')//return
-                            cout << setw(7) << "Return";
+                        {
+                            action = "Return";
+                        }
 
+                        cout << setw(7) << action;
                         string title = film->getTitle();
-                        title.resize(23);
+                        if(title.length() > 23) title.resize(23);
                         cout << setw(25) << title;
-                        cout << setw(15) << pDrama->getDirector();
+                        cout << setw(18) << pDrama->getDirector();
                         cout << setw(6) << film->getYear();
-                        cout << setw(3);
-                        cout << setw(5) << endl;
                     }
                 }
+                cout << endl;
             }
             node = node->getNext();
         }

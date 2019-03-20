@@ -99,7 +99,7 @@ void Film::printHeader() const
 void Film::print() const
 {
 	string title = getTitle() ;
-	title.resize(28);
+	if(title.length() > 28) title.resize(28);
 	cout << " " 
 	<< setw(4) << getNumStock() 
 	<< setw(4) << getMaxStock() - getNumStock()

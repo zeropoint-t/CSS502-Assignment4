@@ -155,12 +155,15 @@ void Classic::printHeader() const
 }
 void Classic::print() const
 {
+	string title = getTitle() ;
+	if(title.length() > 24) title.resize(24);
+
 	cout << " " << left
 	<< setw(4) << getNumStock() 
 	<< setw(4) << getMaxStock() - getNumStock() 
-	<< setw(24) << getTitle() 
+	<< setw(24) << title
 	<< setw(15) << getDirector() 
 	<< setw(5) << getYear() 
 	<< setw(3) << getMonth() 
-	<< setw(10) << getMainActorFirst() << " " << getMainActorLast();
+	<< setw(1) << getMainActorFirst() << " " << getMainActorLast();
 }

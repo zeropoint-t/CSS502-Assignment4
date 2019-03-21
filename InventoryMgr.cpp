@@ -36,7 +36,10 @@ MediaTree* InventoryMgr::findMediaTree(const Media* med)
 	for (vector<MediaTree*>::iterator it = MediaTreesVec.begin(); it != MediaTreesVec.end(); it++) {
 
 		current = *it;
-		if (typeid(*(current->getRoot()->getData())).name() == typeid(*med).name()) { // no trees 
+		Media* m = current->getRoot()->getData();
+		const char * type = typeid(*m).name();
+
+		if (typeid(*m).name() == typeid(*med).name()) { // no trees 
 			return *it;
 		}
 	}
@@ -186,7 +189,8 @@ void InventoryMgr::printInv() {
 	for (vector<MediaTree*>::iterator it = MediaTreesVec.begin(); it != MediaTreesVec.end(); it++) {
 		
 		MediaTree * temp = *it;
-		const char * type = typeid(*(temp->getRoot()->getData())).name();
+		Media* m = temp->getRoot()->getData();
+		const char * type = typeid(*m).name();
 		string typestr(type);
 		typestr.erase(remove_if(typestr.begin(), typestr.end(), [](char c) { return !isalpha(c); } ), typestr.end());//remove numbers from class name 
 		

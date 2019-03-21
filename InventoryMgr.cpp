@@ -254,8 +254,6 @@ void InventoryMgr::buildInv(string filePath) {
 					yearss >> year;
 					//cout << "Year is " << year << endl;
 
-					cout << stock << std::endl;
-					cout << mainActorFirst << " " << year << endl;
 					Media * med = new Classic('F', 'D', stock, 'C', director, title, year, mainActorFirst, mainActorLast, month);
 					this->insert(med);
 				}

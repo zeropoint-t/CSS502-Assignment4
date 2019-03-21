@@ -15,7 +15,8 @@
 TransactionMgr::TransactionMgr(InventoryMgr* inv, AccountMgr* aMgr)
 :invMgr(inv), acctMgr(aMgr)
 {
-
+    accountSet = new set<int>();
+    transactions = new HashTable<int, Transaction*>();
 }
 
 TransactionMgr::TransactionMgr()
@@ -25,7 +26,23 @@ TransactionMgr::TransactionMgr()
 
 TransactionMgr::~TransactionMgr()
 {
-
+    	//delete all accounts
+	for(auto it = accountSet->begin(); it != accountSet->end(); it++)
+	{
+        HashNode<int, Transaction*>* cur = transactions->get(*it);//find head node
+        HashNode<int, Transaction*>* prev = nullptr;
+        //print each transaction from the newest to the oldest
+        while(cur != nullptr && cur->getKey() == *it)
+        {
+            prev = cur;
+            cur = cur->getNext();
+            Transaction* pTrans = prev->getValue();
+            if(pTrans != nullptr)
+                delete pTrans;
+        }
+	}
+	delete accountSet;
+    delete transactions;
 }
 
 void TransactionMgr::buildTransactions(const string infile)
@@ -258,10 +275,11 @@ bool TransactionMgr::borrowMedia(Media* med, Account* acct, const char actionTyp
 {
     if(med->getNumStock() > 0)
     {
-        Transaction* trans = new Transaction(acct, med, actionType);
         if(invMgr->decInv(*med))
-        {      
-            transactions.addFront(acct->getAccountId(), trans);
+        {
+            Transaction* trans = new Transaction(acct, med, actionType);
+            accountSet->insert(acct->getAccountId());
+            transactions->addFront(acct->getAccountId(), trans);
         }
     }else
     {
@@ -275,7 +293,8 @@ bool TransactionMgr::returnMedia(Media* med, Account* acct, const char actionTyp
     if(med->getNumStock() < med->getMaxStock())
     {
         Transaction* trans = new Transaction(acct, med, actionType);
-        transactions.addFront(acct->getAccountId(), trans);
+        accountSet->insert(acct->getAccountId());
+        transactions->addFront(acct->getAccountId(), trans);
         invMgr->incInv(*med);
     }else{
         cout << "Stock will be higher than max stock" << endl;
@@ -297,7 +316,7 @@ void TransactionMgr::printAccountHistory(const int acctId)
         cout << pAcct->getFirstName() << " ";
         cout << pAcct->getLastName() << "------------------------" << endl;
 
-        HashNode<int, Transaction*>* node = transactions.get(acctId);//find head node
+        HashNode<int, Transaction*>* node = transactions->get(acctId);//find head node
         //print each transaction from the newest to the oldest
         while(node != nullptr && node->getKey() == acctId)
         {

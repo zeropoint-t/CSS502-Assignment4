@@ -19,6 +19,7 @@
 #include <vector>
 #include <string>
 #include <iomanip>//display data
+#include <set>
 
 #include "Transaction.h"
 #include "AccountMgr.h"
@@ -30,8 +31,8 @@ using namespace std;
 class TransactionMgr
 {
 private:
-    // vector<Transaction*> transactions;
-    HashTable<int, Transaction*> transactions; // Account and int customerID
+    set<int>* accountSet;
+    HashTable<int, Transaction*>* transactions; // Account and int customerID
     InventoryMgr* invMgr;
     AccountMgr* acctMgr;
 

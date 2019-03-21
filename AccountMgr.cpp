@@ -26,7 +26,7 @@ AccountMgr::AccountMgr()
 
 AccountMgr::~AccountMgr()
 {
-	cout << "Destructor AccountMgr" << endl;
+	// cout << "Destructor AccountMgr" << endl;
 	//delete all accounts
 	for(auto it = accountList->begin(); it != accountList->end(); it++)
 	{

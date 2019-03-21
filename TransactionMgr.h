@@ -77,8 +77,6 @@ public:
         as we find transactins for this account, push them into a stack
         iterate through the stack and print each trasaction from the latest to the oldest
     */
-
-    void printInventory() const;//print inventory
 };
 
 #endif

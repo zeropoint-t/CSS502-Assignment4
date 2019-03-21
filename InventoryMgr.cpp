@@ -91,24 +91,7 @@ bool InventoryMgr::insert(Media * med) {
 	}else{
 
 		if (film->getFilmType() == 'F') {			
-			//cout << "Comedy Film" << endl;
-			//cout << "Comedy Tree already exists" << endl;
 			if (temp->find(temp->getRoot(), med)) {
-				//cout << "Input stock" <<med->getNumStock() << endl;
-				//cout << "existing stock"  << temp->retrieveStock(temp->getRoot(), med) << endl;
-				//med->setNumStock((med->getNumStock() + temp->retrieveStock(temp->getRoot(), med)));				
-				//cout << "new film stock should be " << (med->getNumStock()) << endl;
-				//*****Media * existing = temp->retrieveMedia(temp->getRoot(), med);
-				//cout << endl;
-				//existing->print();
-				//cout << endl;
-				//******existing->setNumStock(med->getNumStock() + existing->getNumStock());
-				//*******existing->setMaxStock(med->getNumStock() /*+ existing->getMaxStock()*/);
-				//med->setMaxStock(med->getNumStock() + temp->retrieveStock(temp->getRoot(), med));
-				//cout << endl;
-				//existing->print();
-				//cout << endl;
-				//*****med->setNumStock(0);
 				med->print();
 				cout << endl;
 				cout << "The film already exists in the DB" << endl;
@@ -121,24 +104,7 @@ bool InventoryMgr::insert(Media * med) {
 		}
 
 		if (film->getFilmType() == 'C') {
-			//cout << "Classic Film" << endl;
-			//cout << "Classic Tree already exists" << endl;
 			if (temp->find(temp->getRoot(), med)) {
-				//cout << "Input stock" <<med->getNumStock() << endl;
-				//cout << "existing stock"  << temp->retrieveStock(temp->getRoot(), med) << endl;
-				//med->setNumStock((med->getNumStock() + temp->retrieveStock(temp->getRoot(), med)));				
-				//cout << "new film stock should be " << (med->getNumStock()) << endl;
-				//Media * existing = temp->retrieveMedia(temp->getRoot(), med);
-				//cout << endl;
-				//existing->print();
-				//cout << endl;
-				//existing->setNumStock(med->getNumStock() + existing->getNumStock());
-				//existing->setMaxStock(med->getNumStock() /*+ existing->getMaxStock()*/);
-				//med->setMaxStock(med->getNumStock() + temp->retrieveStock(temp->getRoot(), med));
-				//cout << endl;
-				//existing->print();
-				//cout << endl;
-				//med->setNumStock(0);
 				med->print();
 				cout << endl;
 				cout << "The film already exists in the DB" << endl;
@@ -151,25 +117,7 @@ bool InventoryMgr::insert(Media * med) {
 		}
 
 		if (film->getFilmType() == 'D') {
-			//cout << "Drama Film" << endl;
-			//cout << "Drama Tree already exists" << endl;
 			if (temp->find(temp->getRoot(), med)) {
-				//cout << "Input stock" <<med->getNumStock() << endl;
-				//cout << "existing stock"  << temp->retrieveStock(temp->getRoot(), med) << endl;
-				//med->setNumStock((med->getNumStock() + temp->retrieveStock(temp->getRoot(), med)));				
-				//cout << "new film stock should be " << (med->getNumStock()) << endl;
-				//Media * existing = temp->retrieveMedia(temp->getRoot(), med);
-				//cout << endl;
-				//existing->print();
-				//cout << endl;
-				//existing->setNumStock(med->getNumStock() + existing->getNumStock());
-				//existing->setMaxStock(med->getNumStock() /*+ existing->getMaxStock()*/);
-				//med->setMaxStock(med->getNumStock() + temp->retrieveStock(temp->getRoot(), med));
-				//cout << endl;
-				//existing->print();
-				//cout << endl;
-				//med->setNumStock(0);
-				//temp->insert(med);
 				med->print();
 				cout << endl;
 				cout << "The film already exists in the DB" << endl;
@@ -221,8 +169,7 @@ void InventoryMgr::buildInv(string filePath) {
 		getline(file, s);
 
 		istringstream iss(s);
-		//string film;
-		//unsigned i = 0;
+
 		if (!s.empty()) {
 			char filmType = s.at(0);
 			if (filmType == 'C' || filmType == 'F' || filmType == 'D') {
@@ -233,33 +180,22 @@ void InventoryMgr::buildInv(string filePath) {
 					int i = 1;
 					while ((pos = s.find(delimiter)) != std::string::npos) {
 						token = s.substr(0, pos);
-						//cout << i << endl;
 						if (i == 2) {
 							stringstream stockss(token);
 							stockss >> stock;
-							//cout << "stock is " << stock << endl;
 						}
 						if (i == 3) {
-							//stringstream directorss(token);
-							//directorss >> director;
 							director = token;
-							//cout << "Director is " << director << endl;
 						}
 						if (i == 4) {
-							//stringstream directorss(token);
-							//directorss >> director;
 							title = token;
-							//cout << "Title is " << title << endl;
 						}
-						//cout << token << std::endl;
+
 						s.erase(0, pos + delimiter.length());
 						i++;
 					}
 					stringstream yearss(s);
 					yearss >> year;
-					//cout << "year is " << year << endl;
-					//cout << s << std::endl;
-
 					if (filmType == 'F') {
 						Media * med = new Comedy('F', 'D', stock, 'F', director, title, year);
 						this->insert(med);
@@ -276,32 +212,16 @@ void InventoryMgr::buildInv(string filePath) {
 					int i = 1;
 					while ((pos = s.find(delimiter)) != std::string::npos) {
 						token = s.substr(0, pos);
-						//if (i > 3) {
-						//	string delimiter2 = " ";
-						//	size_t pos2 = 0;
-						//	string token2;
-						//	while ((pos2 = token.find(delimiter2)) != std::string::npos) {
-						//		token2 = token.substr(0, pos2);
-						//		//cout << "beep" << endl;
-						//		std::cout << token2 << std::endl;
-						//		token.erase(0, pos2 + delimiter2.length());
-						//	}
-						//}					
-						//cout << i << endl;
 						if (i == 2) {
 							stringstream stockss(token);
 							stockss >> stock;
-							//	cout << "stock is " << stock << endl;
 						}
 						if (i == 3) {
 							director = token;
-							//cout << "Director is " << director << endl;
 						}
 						if (i == 4) {
 							title = token;
-							//cout << "Title is " << title << endl;
 						}
-						//cout << token << std::endl;
 						s.erase(0, pos + delimiter.length());
 						i++;
 					}
@@ -334,8 +254,8 @@ void InventoryMgr::buildInv(string filePath) {
 					yearss >> year;
 					//cout << "Year is " << year << endl;
 
-					//cout << s << std::endl;
-
+					cout << stock << std::endl;
+					cout << mainActorFirst << " " << year << endl;
 					Media * med = new Classic('F', 'D', stock, 'C', director, title, year, mainActorFirst, mainActorLast, month);
 					this->insert(med);
 				}
@@ -348,16 +268,21 @@ void InventoryMgr::buildInv(string filePath) {
 	}
 }
 
+//increment stock count
 bool InventoryMgr::incInv(Media& med){
 	med.setNumStock(med.getNumStock()+1);
 	return true;
-};//increment stock count
+};
 
+//decrement stock count
 bool InventoryMgr::decInv(Media& med){
-	med.setNumStock(med.getNumStock()-1);
+	Film& f = dynamic_cast<Film&>(med);
+	int newStock = med.getNumStock()-1;
+	med.setNumStock(newStock);
 	return true;
-};//decrement stock count
+};
 
+//return stock on hand
 int InventoryMgr::getStock(Media& med)
 {
 	MediaTree* temp = nullptr;
@@ -366,6 +291,7 @@ int InventoryMgr::getStock(Media& med)
 	return stock;	
 };
 
+//return Media pointer from inventory
 Media* InventoryMgr::getMedia(Media& med)
 {
 	MediaTree* temp = nullptr;

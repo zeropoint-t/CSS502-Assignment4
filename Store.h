@@ -24,7 +24,7 @@ class Store
 private:
 	InventoryMgr* invMgr;
 	AccountMgr* acctMgr;
-	TransactionMgr* trnsMgr;
+	TransactionMgr* transMgr;
 	vector<Store> storesVect;
 
 public:
@@ -32,9 +32,9 @@ public:
 	Store();
 	~Store();
 
-	void buildInventory(ifstream &InventoryInputFile);//build
-	void buildCustomerList(ifstream &AccountsInputFile);
-	void processTransactions(ifstream &TransactionsInputFile);
+	void buildInventory(string InventoryInputFile);//build
+	void buildCustomerList(string AccountsInputFile);
+	void processTransactions(string TransactionsInputFile);
 };
 
 #endif

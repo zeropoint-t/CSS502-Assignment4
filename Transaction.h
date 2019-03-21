@@ -24,6 +24,7 @@ private:
     char actionType;//borrowed or returned
     
 public:
+    //constructors and destructors
     Transaction(Account*, Media*, char);
     Transaction();
     ~Transaction();

@@ -12,6 +12,7 @@
 
 #include "TransactionMgr.h"
 
+//constructor
 TransactionMgr::TransactionMgr(InventoryMgr* inv, AccountMgr* aMgr)
 :invMgr(inv), acctMgr(aMgr)
 {
@@ -19,11 +20,13 @@ TransactionMgr::TransactionMgr(InventoryMgr* inv, AccountMgr* aMgr)
     transactions = new HashTable<int, Transaction*>();
 }
 
+//constructor
 TransactionMgr::TransactionMgr()
 {
 
 }
 
+//destructor
 TransactionMgr::~TransactionMgr()
 {
     	//delete all accounts
@@ -45,6 +48,9 @@ TransactionMgr::~TransactionMgr()
     delete transactions;
 }
 
+// --------------------void ::buildTransactions(const string infile)-------------
+// Description: reads transaction commands from a file and processes them
+// ------------------------------------------------------------------------------
 void TransactionMgr::buildTransactions(const string infile)
 {
 	ifstream file(infile);
@@ -86,7 +92,7 @@ void TransactionMgr::buildTransactions(const string infile)
                         Account* pAcct = acctMgr->getAccount(accountId);
                         if(pAcct == nullptr)//check if this account exists
                         {
-                            cout << "   CustomerId is " << accountId << " is not valid" << endl;
+                            cout << "ERROR: AccountId " << accountId << " not found" << endl;
                             break;
                         }
 
@@ -111,12 +117,25 @@ void TransactionMgr::buildTransactions(const string infile)
                                 //create a stub Comedy object
                                 Comedy c('M', storageType, 0, filmType, "", title, stoi(year));
                                 Media* pMed = invMgr->getMedia(c);
-                                if(pMed != nullptr && pMed->getNumStock() > 0)
+                                if(pMed != nullptr)
                                 {
-                                    borrowMedia(pMed, pAcct, command);
+                                    if(pMed->getNumStock() > 0)
+                                    {
+                                        borrowMedia(pMed, pAcct, command);
+                                    }else{
+                                        cout << "ERROR: Comedy Movie: " 
+                                        << title 
+                                        << " in " 
+                                        << year
+                                        << " out of stock" << endl;
+                                    }
                                 }else
                                 {
-                                    cout << "Out of stock" << endl;
+                                    cout << "ERROR: Comedy Movie: " 
+                                    << title 
+                                    << " in " 
+                                    << year
+                                    << " not found" << endl;
                                 }                               
                             }else if(filmType == 'C')//classic
                             {
@@ -136,13 +155,34 @@ void TransactionMgr::buildTransactions(const string infile)
                                 Classic c('M', storageType, 0, filmType, "", ""
                                 , stoi(releaseYear), majorActorFirstName, majorActorLastName, stoi(releaseMonth));
                                 Media* pMed = invMgr->getMedia(c);
-                                if(pMed != nullptr && pMed->getNumStock() > 0)
+                                if(pMed != nullptr)
                                 {
-                                    borrowMedia(pMed, pAcct, command);
+                                    if(pMed->getNumStock() > 0)
+                                    {
+                                        borrowMedia(pMed, pAcct, command);
+                                    }else{
+                                        cout << "ERROR: Classic Movie: " 
+                                        << majorActorFirstName 
+                                        << " " 
+                                        << majorActorLastName 
+                                        << " " 
+                                        << releaseYear 
+                                        << " " 
+                                        << releaseMonth 
+                                        << " out of stock" << endl;
+                                    }
                                 }else
                                 {
-                                    cout << "Out of stock" << endl;
-                                }   
+                                    cout << "ERROR: Classic Movie: " 
+                                    << majorActorFirstName 
+                                    << " " 
+                                    << majorActorLastName 
+                                    << " " 
+                                    << releaseYear 
+                                    << " " 
+                                    << releaseMonth 
+                                    << " not found" << endl;
+                                }  
                             }else if(filmType == 'D')//drama
                             {
                                 string director;
@@ -156,22 +196,31 @@ void TransactionMgr::buildTransactions(const string infile)
                                 //create a stub object
                                 Drama d('M', storageType, 0, filmType, director, title, 0);
                                 Media* pMed = invMgr->getMedia(d);
-                                if(pMed != nullptr && pMed->getNumStock() > 0)
+                                if(pMed != nullptr)
                                 {
-                                    borrowMedia(pMed, pAcct, command);
+                                    if(pMed->getNumStock() > 0)
+                                    {
+                                        borrowMedia(pMed, pAcct, command);
+                                    }else{
+                                        cout << "ERROR: Drama Movie: " 
+                                        << title
+                                        << " by " 
+                                        << director
+                                        << " out of stock" << endl;
+                                    }
                                 }else
                                 {
-                                    cout << "Out of stock" << endl;
-                                }   
+                                    cout << "ERROR: Drama Movie: " 
+                                    << title
+                                    << " by " 
+                                    << director
+                                    << " not found" << endl;
+                                }  
                             }else
                             {
-                                cout << "Wrong Film Type" << endl;
+                                cout << "ERROR: Genre " << filmType << " not found" << endl;
                             }
                         }
-                    }
-                    else{
-                        cout << "Wrong Storage Type" << endl;
-                        break;
                     }
                 }else if(command == 'R'){
                     string acctId;
@@ -184,7 +233,7 @@ void TransactionMgr::buildTransactions(const string infile)
                         Account* pAcct = acctMgr->getAccount(accountId);
                         if(pAcct == nullptr)//check if this account exists
                         {
-                            cout << "   CustomerId is " << accountId << " is not valid" << endl;
+                            cout << "ERROR: AccountId " << accountId << " not found" << endl;
                             break;
                         }
 
@@ -254,16 +303,12 @@ void TransactionMgr::buildTransactions(const string infile)
                                 } 
                             }else
                             {
-                                cout << "Wrong Film Type" << endl;
+                                cout << "ERROR: Genre " << filmType << " not found" << endl;
                             }
                         }
                     }
-                    else{
-                        cout << "Wrong Storage Type" << endl;
-                        break;
-                    }
                 }else{
-                    cout << "Error command" << endl;
+                    cout << "ERROR: Command " << command << " is not valid" << endl;
                 }
                 break;
             }
@@ -271,6 +316,9 @@ void TransactionMgr::buildTransactions(const string infile)
     }
 }
 
+// --------------------bool borrowMedia(Media* med, Account* acct, const char actionType)-------------
+// Description: create a transaction object for borrow 
+// ---------------------------------------------------------------------------------------------------
 bool TransactionMgr::borrowMedia(Media* med, Account* acct, const char actionType)
 {
     if(med->getNumStock() > 0)
@@ -288,6 +336,9 @@ bool TransactionMgr::borrowMedia(Media* med, Account* acct, const char actionTyp
     return true;
 }
 
+// --------------------bool returnMedia(Media* med, Account* acct, const char actionType)-------------
+// Description: create a transaction object for Return 
+// ---------------------------------------------------------------------------------------------------
 bool TransactionMgr::returnMedia(Media* med, Account* acct, const char actionType)
 {
     if(med->getNumStock() < med->getMaxStock())
@@ -304,6 +355,9 @@ bool TransactionMgr::returnMedia(Media* med, Account* acct, const char actionTyp
     return true;
 }
 
+// -----------void TransactionMgr::printAccountHistory(const int acctId)--------
+// Description: Print transaction history for an account
+// -----------------------------------------------------------------------------
 void TransactionMgr::printAccountHistory(const int acctId)
 {
     Account* pAcct = acctMgr->getAccount(acctId);
@@ -408,11 +462,9 @@ void TransactionMgr::printAccountHistory(const int acctId)
     }
 }
 
-void TransactionMgr::printInventory() const
-{
-
-}
-
+// -----------string trimLeadingAndTrailingSpaces(string str)--------
+// Description: helper method to trim leading and trailing spaces
+// ------------------------------------------------------------------
 string TransactionMgr::trimLeadingAndTrailingSpaces(string str)
 {
     //remove leading spaces
